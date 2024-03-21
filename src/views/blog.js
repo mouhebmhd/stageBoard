@@ -13,7 +13,7 @@ export default function Blog() {
         <div className="articles ">
             <div className="mainArticle d-flex gap-3">
                 <div className="articlePhoto">
-                    <img src={mainArticlePhoto} className='mainArticlePhoto' alt="" />
+                    <img src="https://placehold.co/600x400" className='mainArticlePhoto' alt="" />
                 </div>
                 <div className="articleDescription d-flex flex-column justify-content-center">
                     <div className="labels d-flex gap-2">
@@ -35,7 +35,7 @@ export default function Blog() {
             </div>
             <div className="secondarryArticles d-flex justify-content-start gap-2 p-1  my-2">
             <div className="card m-0 p-0" style={{width:'25%'}}  >
-            <img src={amesterdamPhoto} className="card-img-top" alt={`Tour`} />
+            <img src="https://placehold.co/600x400" className="card-img-top" alt={`Tour`} />
             <div className="card-body">
               <h5 className="card-title  fw-medium">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h5>
               <p className="card-text tourDescription fw-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, voluptas!</p>
@@ -43,7 +43,7 @@ export default function Blog() {
             </div>
           </div>
           <div className="card m-0 p-0" style={{width:'25%'}}  >
-            <img src={sushi} className="card-img-top" alt={`Tour`} />
+            <img src="https://placehold.co/600x400" className="card-img-top" alt={`Tour`} />
             <div className="card-body">
               <h5 className="card-title  fw-medium">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h5>
               <p className="card-text tourDescription fw-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nemo!</p>
@@ -51,7 +51,7 @@ export default function Blog() {
             </div>
           </div>
           <div className="card m-0 p-0" style={{width:'25%'}}  >
-            <img src={ireland} className="card-img-top" alt={`Tour`} />
+            <img src="https://placehold.co/600x400" className="card-img-top" alt={`Tour`} />
             <div className="card-body">
               <h5 className="card-title  fw-medium">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h5>
               <p className="card-text tourDescription fw-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, sunt?</p>
@@ -60,7 +60,7 @@ export default function Blog() {
             </div>
           </div>
           <div className="card m-0 p-0" style={{width:'25%'}}  >
-            <img src={sushi} className="card-img-top" alt={`Tour`} />
+            <img src="https://placehold.co/600x400" className="card-img-top" alt={`Tour`} />
             <div className="card-body">
               <h5 className="card-title  fw-medium">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h5>
               <p className="card-text tourDescription fw-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, sunt?</p>

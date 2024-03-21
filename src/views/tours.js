@@ -21,7 +21,7 @@ export default function Tours() {
       <div className="row  m-0 p-0 toursList d-flex gap-3 justify-content-center" >
         {pictures.map((picture, index) => (
           <div className="card m-0 p-0 col-lg-3 col-md-4 col-sm-12"  key={index}>
-            <img src={picture} className="card-img-top" alt={`Tour ${index + 1}`} />
+            <img src="https://placehold.co/600x400" className="card-img-top" alt={`Tour ${index + 1}`} />
             <div className="card-body">
               <h5 className="card-title tourDuration fw-normal">7 days </h5>
               <p className="card-text tourDescription fw-medium">Country Here</p>

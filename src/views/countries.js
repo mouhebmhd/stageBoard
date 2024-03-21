@@ -18,19 +18,19 @@ const programmingLanguages = [
 ];
 
 const pictures = [
-  require("../images/uk.jpg"),
-  require("../images/czech.jpg"),
-  require("../images/finland.jpg"),
-  require("../images/norway.jpg"),
-  require("../images/switzerland.jpg"),
-  require("../images/ireland.jpg"),
-  require("../images/italy.jpg"),
-  require("../images/france.jpg"),
-  require("../images/spain.jpg"),
-  require("../images/greece.jpg"),
-  require("../images/turkey.jpg"),
-  require("../images/germany.jpg"),
-  require("../images/usa.jpg")
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400",
+  "https://placehold.co/600x400"
 ];
 
 export default function Countries() {
