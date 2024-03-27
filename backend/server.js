@@ -29,6 +29,11 @@ const internGetRouter = require('./routes/internRouter/getRouter/getInternRouter
 /* Using Routers */
 app.use('/', internGetRouter);
 
+/*****Auth Routers *****/
+/* Importing Routers */
+const authRouter=require("./routes/authentificationRouters/authetificationRouter")
+/* Using Delete Router */
+app.use("/",authRouter);
 /*****Delete Routers *****/
 /* Importing Routers */
 const deleteInterRouter=require("./routes/internRouter/deleteRouter/deleteInternRouter")
