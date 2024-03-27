@@ -17,7 +17,7 @@ const getAllInterns = async () => {
 // Function to get intern by ID
 const getInternById = async (id) => {
     try {
-        const intern = await internSchema.findById(id);
+        const intern = await internSchema.findById(id,{internPassword:0});
         if (intern) {
             return { status: "success", intern };
         } else {

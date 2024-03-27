@@ -30,14 +30,16 @@ const internGetRouter = require('./routes/internRouter/getRouter/getInternRouter
 app.use('/', internGetRouter);
 
 /*****Delete Routers *****/
+/* Importing Routers */
 const deleteInterRouter=require("./routes/internRouter/deleteRouter/deleteInternRouter")
 /* Using Delete Router */
 app.use('/',deleteInterRouter);
 
-
-
-
-
+/*****POST Routers *****/
+/* Importing Routers */
+const postInterRouter=require("./routes/internRouter/postRouter/postRouter")
+/* Using Delete Router */
+app.use('/',postInterRouter);
 
 /* Server Listening */
 const PORT_PRIMARY = process.env.PORT_PRIMARY;

@@ -42,6 +42,10 @@ const schema= new Schema({
         type: String,
     required: true,
     },
+    internAccountStatus:{
+        type: String,
+    required: true,
+    },
 })
 const Intern=mongoose.model("intern",schema);
 module.exports=Intern;
