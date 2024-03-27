@@ -4,7 +4,7 @@ const getInterns=async(req,res)=>{
     res.send(result)
 }
 const getIntern=async(req,res)=>{
-    const result=await getInternById(req.params.id);
+    const result=await getInternById(req.query.id);
     res.send(result)
 }
 module.exports={getInterns,getIntern}
