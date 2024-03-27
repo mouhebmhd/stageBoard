@@ -40,7 +40,11 @@ app.use('/',deleteInterRouter);
 const postInterRouter=require("./routes/internRouter/postRouter/postRouter")
 /* Using Delete Router */
 app.use('/',postInterRouter);
-
+/*****Update Routers *****/
+/* Importing Routers */
+const updateInterRouter=require("./routes/internRouter/updateRouter/updateRouter")
+/* Using Delete Router */
+app.use('/',updateInterRouter);
 /* Server Listening */
 const PORT_PRIMARY = process.env.PORT_PRIMARY;
 const PORT_SECONDARY = process.env.PORT_SECONDARY;
