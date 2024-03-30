@@ -10,7 +10,9 @@ const cookieParser = require('cookie-parser');
 app.use(express.json({ limit: '500000mb' }));
 app.use(morgan('tiny'));
 
-
+app.use(cors({
+    origin: 'http://localhost:3001/createInternAccount', 
+  }));
 
 /* Other Configurations */
 dotenv.config({ path: 'config.env' });
@@ -18,9 +20,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 /* Database Connection */
-var connectToDatabase = require('./database/databaseOperations');
+var connectToDatabase= require('./database/databaseOperations');
 connectToDatabase();
-
+/*Creating tables if they do not exists */
+const {createInternTable}=require("./schemas/createInternTable");
+createInternTable()
 /******* Intern Routers********/
 
 /*****Get Routers *****/
