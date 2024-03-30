@@ -19,7 +19,7 @@ const createProjectTable = async () => {
                 supervisorId INT NOT NULL,
                 internId INT NOT NULL,
                 FOREIGN KEY (supervisorId) REFERENCES Supervisors(supervisorId),
-                FOREIGN KEY (idIntern) REFERENCES Interns(internId)
+                FOREIGN KEY (internId) REFERENCES Interns(internId)
             )
         `;
 

@@ -8,16 +8,17 @@ const createRequirementTable = async () => {
 
         // Define the SQL query to create the Requirement table
         const createRequirementQuery = `
-            CREATE TABLE IF NOT EXISTS Requirements (
-                idRequirement INT  PRIMARY KEY,
-                internId INT,
-                projectId INT,
-                levelOfProficiency VARCHAR(255) NOT NULL,
-                skillId INT
-                FOREIGN KEY (idIntern) REFERENCES Interns(internId),
-                FOREIGN KEY (projectId) REFERENCES Projects(projectId)
-                FOREIGN KEY (skillId) REFERENCES Skills(skillId)
-            )
+        CREATE TABLE IF NOT EXISTS Requirements (
+            idRequirement INT PRIMARY KEY,
+            internId INT NOT NULL,
+            projectId INT NOT NULL,
+            levelOfProficiency VARCHAR(255) NOT NULL,
+            skillId INT,
+            FOREIGN KEY (internId) REFERENCES Interns(internId),
+            FOREIGN KEY (projectId) REFERENCES Projects(projectId),
+            FOREIGN KEY (skillId) REFERENCES Skills(skillId)
+        )
+        
         `;
 
         // Execute the SQL query to create the Requirement table

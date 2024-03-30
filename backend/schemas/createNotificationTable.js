@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 const connectToDatabase = require('../database/databaseOperations');
 
-const createNotificationTables = async () => {
+const createNotificationTable = async () => {
     try {
         // Connect to the database
         const connection = await connectToDatabase();
@@ -30,4 +30,4 @@ const createNotificationTables = async () => {
     }
 };
 
-module.exports = { createNotificationTables };
+module.exports = { createNotificationTable };

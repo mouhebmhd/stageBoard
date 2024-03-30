@@ -25,6 +25,25 @@ connectToDatabase();
 /*Creating tables if they do not exists */
 const {createInternTable}=require("./schemas/createInternTable");
 createInternTable()
+const {createAdminTable}=require("./schemas/createAdminTable")
+createAdminTable()
+const {createEducationTable}=require("./schemas/createEducationTable")
+createEducationTable()
+const {createExperienceTable}=require("./schemas/createExperienceTable")
+createExperienceTable()
+ const {createMessageTable}=require("./schemas/createMessageTable")
+createMessageTable() 
+const {createNotificationTable}=require("./schemas/createNotificationTable")
+createNotificationTable()
+const {createProjectTable}=require("./schemas/createProjectTable")
+createProjectTable()
+const {createRequirementTable}=require("./schemas/createRequirementTable")
+createRequirementTable()
+const {createSkillTable}=require("./schemas/createSkillTable")
+createSkillTable()
+const {createSupervisorTable}=require("./schemas/createSupervisorTable")
+createSupervisorTable()
+
 /******* Intern Routers********/
 
 /*****Get Routers *****/
