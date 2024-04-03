@@ -1,6 +1,10 @@
 const router=require("express").Router();
-const {authentificationController}=require("../../controller/authentificationController/authentificationController")
-router.post("/authentification/login/",(req,res)=>{
-    authentificationController(req,res);
+const {authentificationControllerAsIntern}=require("../../controller/authentificationController/authentificationControllerAsIntern")
+const {authentificationControllerAsAdmin}=require("../../controller/authentificationController/authentificationControllerAsAdmin")
+router.post("/authentification/loginAsIntern/",(req,res)=>{
+    authentificationControllerAsIntern(req,res);
+})
+router.post("/authentification/loginAsAdmin/",(req,res)=>{
+    authentificationControllerAsAdmin(req,res);
 })
 module.exports=router;
