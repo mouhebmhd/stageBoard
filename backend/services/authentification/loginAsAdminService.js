@@ -9,7 +9,7 @@ async function loginAsAdminService(email, password, role) {
         connection = await connectToDatabase();
 
         // Query to select the user with the given email
-        const searchQuery = `SELECT * FROM Admins WHERE adminEmail ='${email}'`;
+        const searchQuery = `SELECT * FROM Admins WHERE emailAdmin ='${email}'`;
         
         return new Promise((resolve, reject) => {
             connection.query(searchQuery, async (error, result, fields) => {
@@ -21,7 +21,7 @@ async function loginAsAdminService(email, password, role) {
                     } else {
                         const user = result[0];
                         // Compare the provided password with the hashed password stored in the database
-                        const passwordMatch = await bcrypt.compare(password, user.internPassword);
+                        const passwordMatch = await bcrypt.compare(password, user.passwordAdmin);
                         if (passwordMatch) {
                             resolve({status:"success",message:"account  found  "}); // Passwords match, return the user
                         } else {
@@ -44,4 +44,4 @@ async function loginAsAdminService(email, password, role) {
     }
 }
 
-module.exports = { loginService };
+module.exports = { loginAsAdminService };

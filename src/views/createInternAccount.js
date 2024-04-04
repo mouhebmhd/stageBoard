@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/login.css';
 import userImage from "../images/fingerprint.png";
 import axios from 'axios';
-export default function Login() {
+export default function Login(props) {
   const [user, setUser] = useState({});
 
   const handleInputChange = (field, value) => {
@@ -29,7 +29,7 @@ export default function Login() {
         <form className='col-6'>
           <div className='avatar' style={{ backgroundImage: `url(${userImage})` }}>
           </div>
-          <h1 className='h1 specialText pageTitle text-center mt-2'>Créer votre compte en tant que stagiaire</h1>
+          <h1 className='h1 specialText pageTitle text-center mt-2'>Créer votre compte en tant que {props.role}</h1>
           <div className='mb-3'>
             <label htmlFor='firstNameInput' className='form-label'>
               Prénom

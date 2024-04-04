@@ -23,7 +23,7 @@ export default function Discover() {
   };
 
   return (
-    <div className="guide p-0 container-fluid mt-3 "  >
+    <div className="guide p-0 container-fluid mt-5 "  >
       <div className="row m-0">
             <div className="col-lg-6 col-md-12 col-sm-12 guideText p-3  d-flex flex-column justify-content-center align-items-center" id="discover">
                 <h1 className='guideTitle'>Découvrez nos opportunités de stage</h1>

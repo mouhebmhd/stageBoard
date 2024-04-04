@@ -22,4 +22,4 @@ const authentificationAsInternController = async (req, res) => {
     }
 };
 
-module.exports = { authentificationAsInternController };
+module.exports =  authentificationAsInternController ;

@@ -11,8 +11,8 @@ app.use(express.json({ limit: '500000mb' }));
 app.use(morgan('tiny'));
 
 app.use(cors({
-    origin: 'http://localhost:3001/createInternAccount', 
-  }));
+  origin: 'http://localhost:3000',
+}));
 
 /* Other Configurations */
 dotenv.config({ path: 'config.env' });

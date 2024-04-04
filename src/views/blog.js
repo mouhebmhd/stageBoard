@@ -8,8 +8,8 @@ import ireland from "../images/irelland.jpg"
 import { FaLocationArrow } from "react-icons/fa";
 export default function Blog() {
   return (
-    <div className="blog m-0 p-2" >
-        <h1 id='blog'>Read Our <span className='specialText'>Blog</span></h1>
+    <div className="blog m-0 p-2 mt-5" >
+        <h1 id='blog ' className='m-4'>Read Our <span className='specialText'>Blog</span></h1>
         <div className="articles ">
             <div className="mainArticle d-flex gap-3">
                 <div className="articlePhoto">

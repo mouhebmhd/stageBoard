@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './navbar.css';
-
+import { Link } from 'react-router-dom';
 function Navbar() {
   const [activeList, setActiveList] = useState([true, false, false, false, false, false, false]);
 
@@ -11,9 +11,9 @@ function Navbar() {
 
   return (
     <nav className="navbar navbar-expand-lg align-items-baseline p-2 m-0">
-      <a className="navbar-brand p-1" href="http://localhost:3000/#navbarBrand">
+      <Link className="navbar-brand p-1" to="http://localhost:3000/#navbarBrand">
         <span className="specialText fs-5 fw-bold">Stage Board</span>
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -28,39 +28,39 @@ function Navbar() {
       <div className="collapse navbar-collapse">
         <ul className="navbar-nav d-flex flex-row col mx-5 justify-content-center gap-4" id='navbarNav'>
           <li className="nav-item mx-2" onClick={() => setActive(0)}>
-            <a className={"nav-link " + (activeList[0] ? "active" : "")} href="http://localhost:3000/#landing">
+            <Link className={"nav-link " + (activeList[0] ? "active" : "")} to="/">
               Acceuil
-            </a>
+            </Link>
           </li>
           <li className="nav-item mx-2" onClick={() => setActive(1)}>
-            <a className={"nav-link " + (activeList[1] ? "active" : "")} href="http://localhost:3000/#discover">
+            <Link className={"nav-link " + (activeList[1] ? "active" : "")} to="/discover">
               Découvrir
-            </a>
+            </Link>
           </li>
           <li className="nav-item mx-2" onClick={() => setActive(2)}>
-            <a className={"nav-link " + (activeList[2] ? "active" : "")} href="http://localhost:3000/#tours">
+            <Link className={"nav-link " + (activeList[2] ? "active" : "")} to="/tours">
               Offres
-            </a>
+            </Link>
           </li>
           <li className="nav-item mx-2" onClick={() => setActive(3)}>
-            <a className={"nav-link " + (activeList[3] ? "active" : "")} href="http://localhost:3000/#blog">
+            <Link className={"nav-link " + (activeList[3] ? "active" : "")} to="/blog">
               Notre Blog
-            </a>
+            </Link>
           </li>
           <li className="nav-item mx-2" onClick={() => setActive(4)}>
-            <a className={"nav-link " + (activeList[4] ? "active" : "")} href="http://localhost:3000/#spécialités">
+            <Link className={"nav-link " + (activeList[4] ? "active" : "")} to="/specialites">
               spécialités
-            </a>
+            </Link>
           </li>
           <li className="nav-item mx-2" onClick={() => setActive(5)}>
-            <a className={"nav-link " + (activeList[5] ? "active" : "")}  href="http://localhost:3000/#testimonials">
+            <Link className={"nav-link " + (activeList[5] ? "active" : "")}  to="/testimonials">
               Témoignages
-            </a>
+            </Link>
           </li>
           <li className="nav-item mx-2" onClick={() => setActive(6)}>
-            <a className={"nav-link " + (activeList[6] ? "active" : "")} href="http://localhost:3000/#contact">
+            <Link className={"nav-link " + (activeList[6] ? "active" : "")} to="/contact">
               Contactez-nous
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
