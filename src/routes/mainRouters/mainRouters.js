@@ -15,9 +15,7 @@ export default function mainRouters() {
     <Route path='/admin/createAccount/' element={<CreateInternAccount role="admin"/>}></Route>
     <Route path='/intern/createAccount/' element={<CreateInternAccount role="stagiaire"/>}></Route>
     <Route path='/supervisor/createAccount/' element={<CreateInternAccount role="encadrant"/>}></Route>
-    <Route path='/admin/login/' element={<Login role="admin"/>}></Route>
-    <Route path='/intern/login/' element={<Login role="stagiaire"/>}></Route>
-    <Route path='/supervisor/login/' element={<Login role="encadrant"/>}></Route>
+    <Route path='/login/' element={<Login />}></Route>
     <Route path='/discover' element={<Discover />}></Route>
     <Route path='/tours' element={<Tours />}></Route>
     <Route path='/blog' element={<Blog />}></Route>

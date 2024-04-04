@@ -5,7 +5,7 @@ import userImage from "../images/fingerprint.png";
 import axios from 'axios';
 import { result } from 'lodash';
 
-export default function Login(props) {
+export default function Login() {
   const [loginData, setLoginData] = useState({
     email: '',
     password: ''
@@ -32,12 +32,12 @@ export default function Login(props) {
   };
 
   return (
-    <div className='formContainer m-0 p-0'>
+    <div className='formContainer m-0 p-0 mt-5 py-5'>
       <div className='container-fluid d-flex justify-content-center form'>
         <form className='col-6'>
           <div className='avatar' style={{ backgroundImage: `url(${userImage})` }}>
           </div>
-          <h1 className='h1 specialText pageTitle text-center mt-2'>Connectez-vous en tant que {props.role}</h1>
+          <h1 className='h1 specialText pageTitle text-center mt-2'>Connectez-vous  ! </h1>
           <div className='mb-3'>
             <label htmlFor='emailInput' className='form-label'>
               Adresse email
