@@ -1,4 +1,4 @@
-const { loginAsInternService } = require("../../services/authentification/loginAsInternService");
+const  loginAsInternService  = require("../../services/authentification/loginAsInternService");
 const { createToken } = require("../../services/authentification/createTokenService");
 
 const authentificationAsInternController = async (req, res) => {
@@ -11,14 +11,13 @@ const authentificationAsInternController = async (req, res) => {
             const token = createToken(loginResult, process.env.SECRET_KEY,180);
 
             // Attach the token to a cookie
-            res.cookie("token", token, { httpOnly: true });
-            res.status(200).json({ status: "success", message: "Login successful" });
+            return({ status: "success", message: "Login successful",token,role:"intern" });
         } else {
-            res.status(401).json({ status: "error", message: "Invalid credentials" });
+            return(401).json({ status: "error", message: "Invalid credentials" });
         }
     } catch (error) {
         console.error("Error in authenticationController:", error);
-        res.status(500).json({ status: "error", message: "An error occurred during authentication" });
+        return({ status: "error", message: "An error occurred during authentication" });
     }
 };
 

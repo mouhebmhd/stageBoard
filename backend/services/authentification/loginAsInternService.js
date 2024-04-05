@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const connectToDatabase = require("../../database/databaseOperations");
 
-async function loginService(email, password, role) {
+async function loginAsInternService(email, password, role) {
     let connection;
 
     try {
@@ -44,4 +44,4 @@ async function loginService(email, password, role) {
     }
 }
 
-module.exports = { loginService };
+module.exports =  loginAsInternService ;
