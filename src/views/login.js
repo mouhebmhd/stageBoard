@@ -17,7 +17,7 @@ export default function Login() {
 
   const userLogin = (event) => {
     event.preventDefault();
-    axios.post("http://localhost:3030/authentification/loginAsAdmin/", loginData)
+    axios.post("http://localhost:3030/authentification/login/", loginData)
     .then(loginResult => {
       if(loginResult.data.status=="success")
       {
