@@ -10,12 +10,12 @@ import Countries from "../../views/countries.js"
 export default function mainRouters() {
   return (
     <Routes>
-    <Route path='/' element={<MainPage />}></Route>
+    <Route path='/mainPage' element={<MainPage />}></Route>
     <Route path='/createInternAccount' element={<CreateInternAccount />}></Route>
     <Route path='/admin/createAccount/' element={<CreateInternAccount role="admin"/>}></Route>
     <Route path='/intern/createAccount/' element={<CreateInternAccount role="stagiaire"/>}></Route>
     <Route path='/supervisor/createAccount/' element={<CreateInternAccount role="encadrant"/>}></Route>
-    <Route path='/login/' element={<Login />}></Route>
+    <Route path='/' element={<Login />}></Route>
     <Route path='/discover' element={<Discover />}></Route>
     <Route path='/tours' element={<Tours />}></Route>
     <Route path='/blog' element={<Blog />}></Route>

@@ -21,7 +21,7 @@ export default function Login() {
     .then(loginResult => {
       if(loginResult.data.status=="success")
       {
-        window.location="/"
+        window.location="/mainPage"
       }
       // Handle successful login, e.g., redirect the user
     })
