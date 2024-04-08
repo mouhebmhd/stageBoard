@@ -13,7 +13,7 @@ const authentificationAsInternController = async (req, res) => {
             // Attach the token to a cookie
             return({ status: "success", message: "Login successful",token,role:"intern" });
         } else {
-            return(401).json({ status: "error", message: "Invalid credentials" });
+            return({ status: "error", message: "Invalid credentials" });
         }
     } catch (error) {
         console.error("Error in authenticationController:", error);

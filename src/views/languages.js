@@ -1,5 +1,5 @@
 import React from 'react';
-import "../styles/countries.css";
+import "../styles/languages.css";
 
 const programmingLanguages = [
   "JavaScript",
@@ -33,10 +33,10 @@ const pictures = [
   "https://placehold.co/600x400"
 ];
 
-export default function Countries() {
+export default function languages() {
   return (
-    <div className="countriesList row p-2 m-0  mt-5 d-flex gap-2 justify-content-center" >
-      <h1 id='destinations'><span className='specialText'>Countries </span>travel to </h1>
+    <div className="languagesList row p-2 m-0  mt-5 d-flex gap-2 justify-content-center" >
+      <h1 id='destinations'><span className='specialText'>languages </span>travel to </h1>
       {programmingLanguages.map((country, index) => (
         <div key={index} className="country d-flex p-2 gap-2 align-items-center col-lg-3">
           <div className="flag" style={{ backgroundImage: `url(${pictures[index]})` }}></div>

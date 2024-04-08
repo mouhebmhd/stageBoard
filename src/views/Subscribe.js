@@ -15,15 +15,15 @@ export default function Subscribe() {
   const [gender, setGender] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [step, setStep] = useState(1);
-  const [countries,setCountries]=useState([])
+  const [languages,setLanguages]=useState([])
     useEffect(()=>{
-        axios.get("https://restcountries.com/v3.1/all")
+        axios.get("https://restlanguages.com/v3.1/all")
         .then(response=>{
-           const  countriesList=response.data.map(country=>{return country.name.common})
-            setCountries(countriesList)
+           const  languagesList=response.data.map(country=>{return country.name.common})
+            setLanguages(languagesList)
         })
         .catch(error=>{
-            console.log("failed to load countries")
+            console.log("failed to load languages")
         })
     },[])
   const handleSubmit = (e) => {
@@ -92,7 +92,7 @@ export default function Subscribe() {
                     onChange={(e) => setNationality(e.target.value)}
                     className='form-control'
                     >
-                    {countries.map((country, index) => {
+                    {languages.map((country, index) => {
                         return (
                         <option key={index} value={country}>
                             {country}

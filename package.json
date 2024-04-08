@@ -5,6 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@mui/lab": "^5.0.0-alpha.169",
     "@mui/material": "^5.15.11",
     "@mui/system": "^5.15.14",
@@ -17,15 +19,18 @@
     "bootstrap": "^5.3.3",
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.10",
+    "js-cookie": "^3.0.5",
     "msnodesqlv8": "^4.1.2",
     "mssql": "^10.0.2",
     "mysql": "^2.18.1",
     "react": "^18.2.0",
     "react-calendar": "^4.8.0",
+    "react-cookie": "^7.1.4",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
+    "sfcookies": "^1.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

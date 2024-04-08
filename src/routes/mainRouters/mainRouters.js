@@ -6,7 +6,7 @@ import Login from "../../views/login.js"
 import Discover from "../../views/discover.js"
 import Tours from "../../views/tours.js"
 import Blog from "../../views/blog.js"
-import Countries from "../../views/countries.js"
+import languages from "../../views/languages.js"
 export default function mainRouters() {
   return (
     <Routes>
@@ -19,7 +19,7 @@ export default function mainRouters() {
     <Route path='/discover' element={<Discover />}></Route>
     <Route path='/tours' element={<Tours />}></Route>
     <Route path='/blog' element={<Blog />}></Route>
-    <Route path='/specialites' element={<Countries />}></Route>
+    <Route path='/specialites' element={<languages />}></Route>
 
    </Routes>
   )

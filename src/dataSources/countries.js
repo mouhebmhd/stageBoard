@@ -1,4 +1,4 @@
-var countries = [
+var languages = [
   {
     path: 'web-am.png',
     countryName: 'Armenia',
@@ -200,4 +200,4 @@ var countries = [
     pricePerPerson: 121
   }
 ]
-module.exports=countries;
+module.exports=languages;
