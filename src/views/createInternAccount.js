@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/login.css';
 import userImage from "../images/fingerprint.png";
 import axios from 'axios';
 export default function Login(props) {
   const [user, setUser] = useState({});
-
   const handleInputChange = (field, value) => {
     setUser({ ...user, [field]: value });
   };
-
   const userConnect = (event) => {
     event.preventDefault();
+    if(props.role)
     axios.post("http://localhost:3000/intern/addIntern/",user)
     .then(connectResult=>{
       console.log(connectResult)
@@ -21,8 +20,9 @@ export default function Login(props) {
     })
   };
 
+    
   return (
-    <div className='formContainer m-0 p-0'>
+    <div className='formContainer m-0 p-0' style={{zIndex:2}}>
       
       <div className='container-fluid d-flex justify-content-center form'>
       
@@ -39,7 +39,7 @@ export default function Login(props) {
               className='form-control'
               id='firstNameInput'
               placeholder='Entrez votre prénom'
-              onChange={(event) => { handleInputChange('internFirstName', event.target.value) }}
+              onChange={(event) => { handleInputChange('FirstName', event.target.value) }}
             />
           </div>
           <div className='mb-3'>
@@ -51,7 +51,7 @@ export default function Login(props) {
               className='form-control'
               id='lastNameInput'
               placeholder='Entrez votre nom de famille'
-              onChange={(event) => { handleInputChange('internName', event.target.value) }}
+              onChange={(event) => { handleInputChange('Name', event.target.value) }}
             />
           </div>
           <div className='mb-3'>
@@ -79,17 +79,17 @@ export default function Login(props) {
               className='form-control'
               id='passwordInput'
               placeholder='Entrez votre mot de passe'
-              onChange={(event) => { handleInputChange('internPassword', event.target.value) }}
+              onChange={(event) => { handleInputChange('Password', event.target.value) }}
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='internLevelInput' className='form-label'>
+            <label htmlFor='LevelInput' className='form-label'>
               Niveau de stage
             </label>
             <select
               className='form-control'
-              id='internLevelInput'
-              onChange={(event) => { handleInputChange('internLevel', event.target.value) }}
+              id='LevelInput'
+              onChange={(event) => { handleInputChange('Level', event.target.value) }}
             >
           <option>Veuillez choisir votre niveau d'études</option>
           <option>Licence</option>
@@ -100,13 +100,13 @@ export default function Login(props) {
               </select>
           </div>
           <div className='mb-3'>
-            <label htmlFor='internGenderInput' className='form-label'>
+            <label htmlFor='GenderInput' className='form-label'>
               Genre
             </label>
             <select
               className='form-select'
-              id='internGenderInput'
-              onChange={(event) => { handleInputChange('internGender', event.target.value) }}>
+              id='GenderInput'
+              onChange={(event) => { handleInputChange('Gender', event.target.value) }}>
               <option value=''>Sélectionnez votre genre</option>
               <option value='male'>Homme</option>
               <option value='female'>Femme</option>
@@ -114,49 +114,49 @@ export default function Login(props) {
             </select>
           </div>
           <div className='mb-3'>
-            <label htmlFor='internEstablishmentInput' className='form-label'>
+            <label htmlFor='EstablishmentInput' className='form-label'>
               Établissement
             </label>
             <input
               type='text'
               className='form-control'
-              id='internEstablishmentInput'
+              id='EstablishmentInput'
               placeholder='Entrez votre établissement'
-              onChange={(event) => { handleInputChange('internEstablishment', event.target.value) }}
+              onChange={(event) => { handleInputChange('Establishment', event.target.value) }}
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='internPhotoInput' className='form-label'>
+            <label htmlFor='PhotoInput' className='form-label'>
               Photo
             </label>
             <input
               type='file'
               className='form-control'
-              id='internPhotoInput'
-              onChange={(event) => { handleInputChange('internPhoto', event.target.files[0]) }}
+              id='PhotoInput'
+              onChange={(event) => { handleInputChange('Photo', event.target.files[0]) }}
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='internBirthDateInput' className='form-label'>
+            <label htmlFor='BirthDateInput' className='form-label'>
               Date de naissance
             </label>
             <input
               type='date'
               className='form-control'
-              id='internBirthDateInput'
-              onChange={(event) => { handleInputChange('internBirthDate', event.target.value) }}
+              id='BirthDateInput'
+              onChange={(event) => { handleInputChange('BirthDate', event.target.value) }}
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='internPhoneInput' className='form-label'>
+            <label htmlFor='PhoneInput' className='form-label'>
               Téléphone
             </label>
             <input
               type='tel'
               className='form-control'
-              id='internPhoneInput'
+              id='PhoneInput'
               placeholder='Entrez votre numéro de téléphone'
-              onChange={(event) => { handleInputChange('internPhone', event.target.value) }}
+              onChange={(event) => { handleInputChange('Phone', event.target.value) }}
             />
           </div>
 

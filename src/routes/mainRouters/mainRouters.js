@@ -11,7 +11,6 @@ export default function mainRouters() {
   return (
     <Routes>
     <Route path='/mainPage' element={<MainPage />}></Route>
-    <Route path='/createInternAccount' element={<CreateInternAccount />}></Route>
     <Route path='/admin/createAccount/' element={<CreateInternAccount role="admin"/>}></Route>
     <Route path='/intern/createAccount/' element={<CreateInternAccount role="stagiaire"/>}></Route>
     <Route path='/supervisor/createAccount/' element={<CreateInternAccount role="encadrant"/>}></Route>

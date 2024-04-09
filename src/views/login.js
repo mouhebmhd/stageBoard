@@ -5,9 +5,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/login.css";
 import userImage from "../images/fingerprint.png";
 import axios from "axios";
-import NotificationModal from "../components/notificationModal";
-
+import { Link } from "react-router-dom";
 export default function Login() {
+  
   const successMessage = useRef(null);
   const errorMessage = useRef(null);
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+  
   const setCookies = (name, value) => {
     const expires = new Date();
     expires.setTime(expires.getTime() + 3 * 24 * 60 * 60 * 1000); // Set expiration time
@@ -32,7 +33,10 @@ export default function Login() {
     document.cookie = cookieString;
     console.log("cookie created successfully ");
   };
-
+  const navigateToView=(viewRoute)=>{
+    document.getElementById("dismissButton").click()
+    navigate(viewRoute);
+  }
   const handleInputChange = (field, value) => {
     setLoginData({ ...loginData, [field]: value });
   };
@@ -114,7 +118,7 @@ export default function Login() {
               }}
             />
           </div>
-          <NotificationModal ref={modalRef} />
+          
 
           <button
             type="button"
@@ -127,7 +131,38 @@ export default function Login() {
           </button>
           <p>
             Pas encore inscrit ?{" "}
-           <span className="fw-semibold specialText"> Créer un compte</span>{" "}
+           <span className="fw-semibold specialText" id="launchModal" data-bs-toggle="modal" data-bs-target="#exampleModal"> Créer un compte</span>{" "}
+           <>
+      <div className="modal  mt-5"  id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            
+            <div className="modal-body">
+              <h2 className="text-center">Créer votre compte en tant que ?</h2>
+               <div className="btnContainer d-flex column-gap-2 justify-content-center">
+                <button className="btn btn-success" onClick={()=>{
+                  navigateToView("/supervisor/createAccount/")
+                }}>
+                Encadrant
+              </button>
+            
+            
+                  <button className="btn btn-primary"  onClick={()=>{
+                  navigateToView("/intern/createAccount/")
+                }}>
+                Stagiaire
+              </button>
+              <button type="button" class="btn btn-secondary" id="dismissButton" data-bs-dismiss="modal">
+          Close
+        </button>
+               </div>
+                 
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </>
           </p>
         </form>
       </div>
