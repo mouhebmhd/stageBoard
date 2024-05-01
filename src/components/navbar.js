@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import './navbar.css';
 import { Link } from 'react-router-dom';
+import { FaBell } from "react-icons/fa";
+import { CiUser } from "react-icons/ci";
+
 function Navbar() {
   const [activeList, setActiveList] = useState([true, false, false, false, false, false, false]);
 
@@ -28,7 +31,7 @@ function Navbar() {
       <div className="collapse navbar-collapse">
         <ul className="navbar-nav d-flex flex-row col mx-5 justify-content-center gap-4" id='navbarNav'>
           <li className="nav-item mx-2" onClick={() => setActive(0)}>
-            <Link className={"nav-link " + (activeList[0] ? "active" : "")} to="/">
+            <Link className={"nav-link " + (activeList[0] ? "active" : "")} to="/mainPage">
               Acceuil
             </Link>
           </li>
@@ -63,6 +66,12 @@ function Navbar() {
             </Link>
           </li>
         </ul>
+        <FaBell className='notificationIcon mx-1 '></FaBell>
+
+        <Link className={"nav-link "} to="/user/manageProfile">
+        <CiUser className='profilIcon mx-1 '></CiUser>
+        </Link>
+        
       </div>
     </nav>
   );

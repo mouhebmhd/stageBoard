@@ -1,6 +1,6 @@
 import React from 'react';
 import "../styles/languages.css";
-
+import Navbar from '../components/navbar';
 const programmingLanguages = [
   "JavaScript",
   "Python",
@@ -35,8 +35,10 @@ const pictures = [
 
 export default function languages() {
   return (
-    <div className="languagesList row p-2 m-0  mt-5 d-flex gap-2 justify-content-center" >
-      <h1 id='destinations'><span className='specialText'>languages </span>travel to </h1>
+    <>
+    <Navbar></Navbar>
+    <div className="languagesList row p-2 m-0  mt-5 pt-4 d-flex gap-2 justify-content-center">
+    <h1 className='text-center pageTitle'>Technologies Utilisées</h1>
       {programmingLanguages.map((country, index) => (
         <div key={index} className="country d-flex p-2 gap-2 align-items-center col-lg-3">
           <div className="flag" style={{ backgroundImage: `url(${pictures[index]})` }}></div>
@@ -45,6 +47,6 @@ export default function languages() {
           </div>
         </div>
       ))}
-    </div>
+    </div></>
   );
 }

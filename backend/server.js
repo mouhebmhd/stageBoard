@@ -51,6 +51,10 @@ createSupervisorTable()
 const internGetRouter = require('./routes/internRouter/getRouter/getInternRouter');
 /* Using Routers */
 app.use('/', internGetRouter);
+/* Importing Routers */
+const supervisorGetRouter = require('./routes/supervisorRouter/getRouter/getSupervisorRouter');
+/* Using Routers */
+app.use('/', supervisorGetRouter);
 
 /*****Auth Routers *****/
 /* Importing Routers */
@@ -65,13 +69,15 @@ app.use('/',deleteInterRouter);
 
 /*****POST Routers *****/
 /* Importing Routers */
-const postInterRouter=require("./routes/internRouter/postRouter/postRouter")
-/* Using Delete Router */
+const postInterRouter=require("./routes/internRouter/postRouter/postRouter");
+const postSupervisorRouter=require("./routes/supervisorRouter/postRouter/postSupervisor")
+/* Using Post Router */
 app.use('/',postInterRouter);
+app.use('/',postSupervisorRouter);
 /*****Update Routers *****/
 /* Importing Routers */
 const updateInterRouter=require("./routes/internRouter/updateRouter/updateRouter")
-/* Using Delete Router */
+/* Using Update Router */
 app.use('/',updateInterRouter);
 /* Server Listening */
 const PORT_PRIMARY = process.env.PORT_PRIMARY;

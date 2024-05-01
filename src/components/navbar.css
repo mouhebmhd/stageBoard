@@ -39,4 +39,9 @@
     border-bottom: 3px solid var(--primaryColor) !important;
     font-weight: 600;
   }
-  
+  .notificationIcon,
+  .profilIcon
+  {
+    color: var(--primaryColor) !important;
+    font-size: 21px !important;
+  }

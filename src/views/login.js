@@ -152,7 +152,7 @@ export default function Login() {
                 }}>
                 Stagiaire
               </button>
-              <button type="button" class="btn btn-secondary" id="dismissButton" data-bs-dismiss="modal">
+              <button type="button" class="btn btn-secondary d-none" id="dismissButton" data-bs-dismiss="modal">
           Close
         </button>
                </div>

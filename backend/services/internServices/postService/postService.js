@@ -7,7 +7,7 @@ const postIntern = async (newIntern) => {
         const connection = await connectToDatabase();
         
         // Hash the password
-        const hashedPassword = await bcrypt.hash(newIntern.internPassword, 10);
+        const hashedPassword = await bcrypt.hash(newIntern.Password, 10);
 
         // Prepare SQL query to insert the intern
         const insertQuery = `
@@ -19,10 +19,11 @@ const postIntern = async (newIntern) => {
 
         // Execute the SQL query
         return new Promise((resolve, reject) => {
-            connection.query(insertQuery, [newIntern.internName, newIntern.internFirstName, newIntern.internEmail, hashedPassword, newIntern.internLevel, newIntern.internGender, newIntern.internEstablishment, newIntern.internPhoto, newIntern.internBirthDate, newIntern.internPhone, newIntern.internAccountStatus], (error, results, fields) => {
+            connection.query(insertQuery, [newIntern.Name, newIntern.FirstName, newIntern.Email, hashedPassword, newIntern.Level, newIntern.Gender, newIntern.Establishment,'null', newIntern.BirthDate, newIntern.Phone, 'frozen'], (error, results, fields) => {
                 connection.end(); // Close the connection
-
+                console.log(results)
                 if (error) {
+                    console.log(error)
                     reject({ status: "failed", message: 'Error inserting intern:', error: error });
                 } else {
                     resolve({ status: "success", message: 'Intern inserted successfully' });
@@ -30,6 +31,7 @@ const postIntern = async (newIntern) => {
             });
         });
     } catch (error) {
+        console.log(error)
         return { status: "failed", message: 'Error connecting to database:', error: error };
     }
 };

@@ -10,26 +10,78 @@ export default function Login(props) {
   };
   const userConnect = (event) => {
     event.preventDefault();
-    if(props.role)
-    axios.post("http://localhost:3000/intern/addIntern/",user)
+    if(props.role=="stagiaire")
+    {
+    
+    axios.post("http://localhost:3030/intern/addIntern/",user)
     .then(connectResult=>{
-      console.log(connectResult)
+      if(connectResult.data.status=="success")
+      {
+        document.getElementById("successMessage").classList.remove("d-none");
+        document.getElementById("errorMessage").classList.add("d-none");
+        setTimeout(()=>{
+          
+          window.location.assign="/"
+        },5000)
+      }
+      else
+      {
+        document.getElementById("errorMessage").classList.remove("d-none");
+      }
     })
     .catch(error=>{
       console.log(error)
+    }) 
+    }
+    if(props.role=="encadrant")
+    {
+      const data = {
+        supervisorName: user.Name,
+        supervisorFirstName: user.FirstName,
+        supervisorEmail: user.Email,
+        supervisorPassword: user.Password,
+        supervisorLevel: user.Level,
+        supervisorGender: user.Gender,
+        supervisorEstablishment: user.Establishment,
+        supervisorPhoto: 'Null', // You might need to add logic to handle supervisorPhoto
+        supervisorBirthDate: user.BirthDate,
+        supervisorPhone: user.Phone
+    };
+        axios.post("http://localhost:3030/supervisor/addSupervisor/",data)
+    .then(connectResult=>{
+      if(connectResult.data.status=="success")
+      {
+        document.getElementById("successMessage").classList.remove("d-none");
+        document.getElementById("errorMessage").classList.add("d-none");
+        setTimeout(()=>{
+          
+          window.location.assign("/")
+        },5000)
+      }
+      else
+      {
+        document.getElementById("errorMessage").classList.remove("d-none");
+      }
     })
+    .catch(error=>{
+      console.log(error)
+    }) 
+    }
+  
   };
 
     
   return (
     <div className='formContainer m-0 p-0' style={{zIndex:2}}>
-      
+       
       <div className='container-fluid d-flex justify-content-center form'>
       
         <form className='col-6'>
           <div className='avatar' style={{ backgroundImage: `url(${userImage})` }}>
           </div>
           <h1 className='h1 specialText pageTitle text-center mt-2'>Créer votre compte en tant que {props.role}</h1>
+          <h1 className="text-success d-none" id="successMessage">Votre compte a été créé avec succès. Votre statut restera gelé jusqu'à ce que l'administrateur active votre compte.</h1>
+          <h1 className='text-danger d-none' id="errorMessage">Nous vous informons que la création de votre compte a échoué. Veuillez réessayer ultérieurement. </h1>
           <div className='mb-3'>
             <label htmlFor='firstNameInput' className='form-label'>
               Prénom
@@ -64,7 +116,7 @@ export default function Login(props) {
               id='emailInput'
               aria-describedby='emailHelp'
               placeholder='Entrez votre adresse email'
-              onChange={(event) => { handleInputChange('interEmail', event.target.value) }}
+              onChange={(event) => { handleInputChange('Email', event.target.value) }}
             />
             <div id='emailHelp' className='form-text'>
               Nous ne partagerons jamais votre adresse email avec quelqu'un d'autre.
@@ -125,17 +177,7 @@ export default function Login(props) {
               onChange={(event) => { handleInputChange('Establishment', event.target.value) }}
             />
           </div>
-          <div className='mb-3'>
-            <label htmlFor='PhotoInput' className='form-label'>
-              Photo
-            </label>
-            <input
-              type='file'
-              className='form-control'
-              id='PhotoInput'
-              onChange={(event) => { handleInputChange('Photo', event.target.files[0]) }}
-            />
-          </div>
+          
           <div className='mb-3'>
             <label htmlFor='BirthDateInput' className='form-label'>
               Date de naissance

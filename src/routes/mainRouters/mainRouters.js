@@ -6,7 +6,9 @@ import Login from "../../views/login.js"
 import Discover from "../../views/discover.js"
 import Tours from "../../views/tours.js"
 import Blog from "../../views/blog.js"
-import languages from "../../views/languages.js"
+import Languages from "../../views/languages.js"
+import ManageUsers from "../../views/agents.js"
+import ManageProfile from "../../views/manageProfile.js"
 export default function mainRouters() {
   return (
     <Routes>
@@ -18,8 +20,9 @@ export default function mainRouters() {
     <Route path='/discover' element={<Discover />}></Route>
     <Route path='/tours' element={<Tours />}></Route>
     <Route path='/blog' element={<Blog />}></Route>
-    <Route path='/specialites' element={<languages />}></Route>
-
+    <Route path='/specialites' element={<Languages />}></Route>
+    <Route path='/users/manageUsers' element={<ManageUsers />}></Route>
+    <Route path='/user/manageProfile' element={<ManageProfile />}></Route>
    </Routes>
   )
 }
