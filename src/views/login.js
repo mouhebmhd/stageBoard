@@ -43,7 +43,7 @@ export default function Login() {
 
   const userLogin = async (event) => {
     event.preventDefault();
-    axios
+   /* axios
       .post("http://localhost:3030/authentification/login/", loginData)
       .then(async (loginResult) => {
         if (loginResult.data.status === "success") {
@@ -64,7 +64,9 @@ export default function Login() {
       .catch((error) => {
         console.log(error);
         // Handle login error, e.g., display error message to the user
-      });
+      });*/
+      navigate("/mainPage");
+
   };
   return (
     <div className="formContainer m-0 p-0 mt-5 py-5">

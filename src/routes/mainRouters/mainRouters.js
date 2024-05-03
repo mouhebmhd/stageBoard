@@ -7,8 +7,11 @@ import Discover from "../../views/discover.js"
 import Tours from "../../views/tours.js"
 import Blog from "../../views/blog.js"
 import Languages from "../../views/languages.js"
-import ManageUsers from "../../views/agents.js"
+import ManageInterns from "../../views/manageInterns"
+import ManageSupervisors from "../../views/manageSupervisors.js"
 import ManageProfile from "../../views/manageProfile.js"
+import ContactUs from '../../views/contactUs.js';
+import Candidatures from '../../views/candidatures.js';
 export default function mainRouters() {
   return (
     <Routes>
@@ -21,8 +24,11 @@ export default function mainRouters() {
     <Route path='/tours' element={<Tours />}></Route>
     <Route path='/blog' element={<Blog />}></Route>
     <Route path='/specialites' element={<Languages />}></Route>
-    <Route path='/users/manageUsers' element={<ManageUsers />}></Route>
+    <Route path='/users/interns' element={<ManageInterns />}></Route>
+    <Route path='/users/supervisors' element={<ManageSupervisors />}></Route>
     <Route path='/user/manageProfile' element={<ManageProfile />}></Route>
+    <Route path='/contact' element={<ContactUs />}></Route>
+    <Route path='/candidatures' element={<Candidatures />}></Route>
    </Routes>
   )
 }

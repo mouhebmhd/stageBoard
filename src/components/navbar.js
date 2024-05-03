@@ -46,18 +46,18 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item mx-2" onClick={() => setActive(3)}>
-            <Link className={"nav-link " + (activeList[3] ? "active" : "")} to="/blog">
-              Notre Blog
+            <Link className={"nav-link " + (activeList[3] ? "active" : "")} to="/users/interns">
+              Stagiaires
             </Link>
           </li>
           <li className="nav-item mx-2" onClick={() => setActive(4)}>
-            <Link className={"nav-link " + (activeList[4] ? "active" : "")} to="/specialites">
-              spécialités
+            <Link className={"nav-link " + (activeList[4] ? "active" : "")} to="/users/supervisors">
+              Encadrants
             </Link>
           </li>
           <li className="nav-item mx-2" onClick={() => setActive(5)}>
-            <Link className={"nav-link " + (activeList[5] ? "active" : "")}  to="/testimonials">
-              Témoignages
+            <Link className={"nav-link " + (activeList[5] ? "active" : "")}  to="/candidatures">
+              Candidatures
             </Link>
           </li>
           <li className="nav-item mx-2" onClick={() => setActive(6)}>

@@ -19,7 +19,7 @@ function Agents() {
             "name": "Jane Smith",
             "phone": "987-654-3210",
             "email": "jane@example.com",
-            "role":"encadrant",
+            "role":"stagiaire",
             "etatCompte": "bloqué"
         },
         {
@@ -27,7 +27,7 @@ function Agents() {
             "name": "Alice Johnson",
             "phone": "555-555-5555",
             "email": "alice@example.com",
-            "role":"encadrant",
+            "role":"stagiaire",
             "etatCompte": "supprimé"
         }
     ]);
@@ -103,7 +103,7 @@ function Agents() {
             <div className='container-fluid mt-5 p-0'>
                 <div className='row m-0 p-0 p-5 '>
                     
-                    <h1 className='text-center pageTitle'>Gestion des Utilisateurs</h1>
+                    <h1 className='text-center pageTitle'>Gestion de Stagiaires</h1>
                     <div className='container-fluid m-0 p-0'>
                         <div className='row justify-content-center gap-3'>
                             {agents.map(agent => (

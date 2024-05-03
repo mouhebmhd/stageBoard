@@ -10,6 +10,7 @@ import Navbar from '../components/navbar';
 export default function mainPage() {
   return (
 <>
+<Navbar></Navbar  >
    <LandingComponent></LandingComponent>
  </>
   )
