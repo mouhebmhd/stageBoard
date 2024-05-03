@@ -21,7 +21,15 @@ export default function Tours() {
     <>
     <Navbar></Navbar>
     <div className="tours p-2 m-0 mt-5 pt-5 " >
+      <div className="col-12 p-2 d-flex justify-content-between">
       <h1 className='text-center pageTitle'>Offres de stage</h1>
+
+      <button className="btn btn-primary submitBTN m-0">
+                Nouvelle Offre +
+              </button>
+
+      </div>
+
       <div className="row  m-0 p-0 toursList d-flex gap-3 justify-content-center" >
         {pictures.map((picture, index) => (
           <div className="card m-0 p-0 col-lg-3 col-md-4 col-sm-12"  key={index}>
