@@ -2,7 +2,7 @@ const {updateService}=require("../../../services/internServices/updateService/up
 const updateController=async (req,res)=>{
     try
     {
-    const updateResult=await updateService(req.query.id,req.body);
+    const updateResult=await updateService(req.body);
     res.send(updateResult)
     }
     catch(error)

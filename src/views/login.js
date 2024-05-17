@@ -20,7 +20,19 @@ export default function Login() {
   const setCookies = (name, value) => {
     const expires = new Date();
     expires.setTime(expires.getTime() + 3 * 24 * 60 * 60 * 1000); // Set expiration time
-
+const getCookies = (name) => {
+  const cookieString = document.cookie;
+  const cookies = cookieString.split(';').map(cookie => cookie.trim());
+  
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.split('=');
+    if (cookieName === name) {
+      return cookieValue;
+    }
+  }
+  
+  return null; // If cookie with the given name is not found
+};
     // Serialize the value to JSON string
     const serializedValue = JSON.stringify(value);
 
@@ -43,19 +55,25 @@ export default function Login() {
 
   const userLogin = async (event) => {
     event.preventDefault();
-   /* axios
+    axios
       .post("http://localhost:3030/authentification/login/", loginData)
       .then(async (loginResult) => {
         if (loginResult.data.status === "success") {
           errorMessage.current.classList.toggle("d-none");
           successMessage.current.classList.remove("d-none");
-          setTimeout(() => {
-            setCookies("currentUser", {
-              token: loginResult.data.token,
-              role: loginResult.data.role,
-            });
+          errorMessage.current.classList.toggle("d-none");
+
+          setCookies("currentUser", {
+            token: loginResult.data.token,
+            role: loginResult.data.role,
+          });
+          localStorage.setItem("currentUser",loginResult.data.token)
+          localStorage.setItem("role",loginResult.data.role)
+          console.log(loginResult.data)
+         setTimeout(() => {
+           
             navigate("/mainPage");
-          }, 2000);
+          }, 2000); 
         } else {
           errorMessage.current.classList.remove("d-none");
         }
@@ -64,8 +82,7 @@ export default function Login() {
       .catch((error) => {
         console.log(error);
         // Handle login error, e.g., display error message to the user
-      });*/
-      navigate("/mainPage");
+      });
 
   };
   return (
@@ -154,7 +171,7 @@ export default function Login() {
                 }}>
                 Stagiaire
               </button>
-              <button type="button" class="btn btn-secondary d-none" id="dismissButton" data-bs-dismiss="modal">
+              <button type="button" className="btn btn-secondary d-none" id="dismissButton" data-bs-dismiss="modal">
           Close
         </button>
                </div>

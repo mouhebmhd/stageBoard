@@ -5,7 +5,22 @@ import axios from 'axios'
 import avatar from '../../src/images/avatar.png'
 import Navbar from '../components/navbar'
 function Profil () {
-  const userID = useParams().id
+  const educations=[]
+  const experiences=[]
+  const getCookies = (name) => {
+    const cookieString = document.cookie;
+    const cookies = cookieString.split(';').map(cookie => cookie.trim());
+    
+    for (const cookie of cookies) {
+      const [cookieName, cookieValue] = cookie.split('=');
+      if (cookieName === name) {
+        return decodeURIComponent(cookieValue);
+      }
+    }
+    
+    return null; // If cookie with the given name is not found
+  };
+  
   const [userData, setUserData] = useState({
     userFirstName: '',
     userEmail: '',
@@ -17,6 +32,23 @@ function Profil () {
     userBirthDate: '',
     userPhone: ''
   })
+  const [education, setEducation] = useState({
+    educationHolderId: '',
+    educationLevel: '',
+    educationInstitution: '',
+    educationStartDate: '',
+    educationEndDate: '',
+    educationDiploma: '',
+    educationDistinction: ''
+  });
+  const [experience, setExperience] = useState({
+    experienceHolderId: '',
+    experienceCompany: '',
+    experienceStartDate: '',
+    experienceEndDate: '',
+    experienceMission: '',
+    experienceDescription: ''
+  });
   const addEducation=()=>{
     const educationStep=(document.getElementsByClassName("educationStep")[0]).cloneNode(true)
     const educations=(document.getElementsByClassName("educations")[0])
@@ -27,74 +59,36 @@ function Profil () {
     const experiences=(document.getElementsByClassName("experiences")[0])
     experiences.appendChild(experienceStep)
   }
+  const updateProfile=()=>{
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3030/user/getProfileInfo/${userID}`)
-      .then(response => {
-        setUserData(response.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }, [userID])
+  }
+  useEffect(()=>{
+    const cookie=getCookies("currentUser");
+    console.log(JSON.parse(cookie))
+  },[])
 
-  const [user, setUser] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    level: '',
-    gender: '',
-    establishment: '',
-    birthDate: '',
-    phone: ''
-  })
+
 
   const handleInputChange = (field, value) => {
-    setUser(prevUser => ({
+    setUserData(prevUser => ({
       ...prevUser,
       [field]: value
     }))
   }
 
-  function updateProfile () {
-    // Define an array to hold error messages for empty fields
-    const errors = []
-
-    // Check each field and add an error message if it's empty
-    if (!user.firstName.trim()) {
-      errors.push('First Name is required')
-    }
-
-    if (!user.email.trim()) {
-      errors.push('Email is required')
-    }
-
-    if (!user.phone.trim()) {
-      errors.push('Phone Number is required')
-    }
-
-    // Check if there are any errors
-    if (errors.length > 0) {
-      // Display error messages or handle them as needed
-      for (const error of errors) {
-        console.error(error)
-      }
-    } else {
-      // If there are no errors, you can proceed with the update
-      axios
-        .put('http://localhost:3030/user/updateProfile/', user)
-        .then(response => {
-          console.log(response)
-          window.location.reload()
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    }
+  const handleEducationInputChange = (field, value) => {
+    setEducation(prevEducation => ({
+      ...prevEducation,
+      [field]: value
+    }))
   }
-
+  const handleExperienceInputChange = (field, value) => {
+    setExperience(prevExperience => ({
+      ...prevExperience,
+      [field]: value
+    }))
+  }
+  
   return (
     <>
       <Navbar></Navbar>
@@ -267,7 +261,7 @@ function Profil () {
                       id='educationLevelInput'
                       placeholder="Entrez votre niveau d\'éducation"
                       onChange={event => {
-                        handleInputChange('educationLevel', event.target.value)
+                        handleEducationInputChange('educationLevel', event.target.value)
                       }}
                     />
                   </div>
@@ -284,7 +278,7 @@ function Profil () {
                       id='educationInstitutionInput'
                       placeholder="Entrez votre établissement d'éducation"
                       onChange={event => {
-                        handleInputChange(
+                        handleEducationInputChange(
                           'educationInstitution',
                           event.target.value
                         )
@@ -303,7 +297,7 @@ function Profil () {
                       className='form-control'
                       id='educationStartDateInput'
                       onChange={event => {
-                        handleInputChange(
+                        handleEducationInputChange(
                           'educationStartDate',
                           event.target.value
                         )
@@ -322,7 +316,7 @@ function Profil () {
                       className='form-control'
                       id='educationEndDateInput'
                       onChange={event => {
-                        handleInputChange(
+                        handleEducationInputChange(
                           'educationEndDate',
                           event.target.value
                         )
@@ -342,7 +336,7 @@ function Profil () {
                       id='educationDiplomaInput'
                       placeholder='Entrez votre diplôme'
                       onChange={event => {
-                        handleInputChange(
+                        handleEducationInputChange(
                           'educationDiploma',
                           event.target.value
                         )
@@ -362,7 +356,7 @@ function Profil () {
                       id='educationDistinctionInput'
                       placeholder='Entrez votre distinction'
                       onChange={event => {
-                        handleInputChange(
+                        handleEducationInputChange(
                           'educationDistinction',
                           event.target.value
                         )
@@ -396,7 +390,7 @@ function Profil () {
         className='form-control'
         id='experienceCompanyInput'
         placeholder="Entrez le nom de l'entreprise"
-        onChange={(event) => { handleInputChange('experienceCompany', event.target.value) }}
+        onChange={(event) => { handleExperienceInputChange('experienceCompany', event.target.value) }}
       />
     </div>
     <div className='mb-3 col-lg-5'>
@@ -407,7 +401,7 @@ function Profil () {
         type='date'
         className='form-control'
         id='experienceStartDateInput'
-        onChange={(event) => { handleInputChange('experienceStartDate', event.target.value) }}
+        onChange={(event) => { handleExperienceInputChange('experienceStartDate', event.target.value) }}
       />
     </div>
     <div className='mb-3 col-lg-5'>
@@ -418,7 +412,7 @@ function Profil () {
         type='date'
         className='form-control'
         id='experienceEndDateInput'
-        onChange={(event) => { handleInputChange('experienceEndDate', event.target.value) }}
+        onChange={(event) => { handleExperienceInputChange('experienceEndDate', event.target.value) }}
       />
     </div>
     <div className='mb-3 col-lg-5'>
@@ -430,7 +424,7 @@ function Profil () {
         className='form-control'
         id='experienceMissionInput'
         placeholder='Entrez la mission'
-        onChange={(event) => { handleInputChange('experienceMission', event.target.value) }}
+        onChange={(event) => { handleExperienceInputChange('experienceMission', event.target.value) }}
       />
     </div>
     <div className='mb-3 col-lg-10'>
@@ -442,7 +436,7 @@ function Profil () {
         id='experienceDescriptionInput'
         rows='5'
         placeholder='Entrez la description'
-        onChange={(event) => { handleInputChange('experienceDescription', event.target.value) }}
+        onChange={(event) => { handleExperienceInputChange('experienceDescription', event.target.value) }}
       ></textarea>
     </div>
   </div>

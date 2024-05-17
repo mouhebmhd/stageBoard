@@ -22,7 +22,7 @@ const getAllSupervisors = async () => {
                     reject({ status: "failed", message: 'Error fetching interns:', error: error });
                 } else {
                     // If the selection is successful, resolve the promise with the fetched interns
-                    resolve({ status: "success", interns: results });
+                    resolve({ status: "success", supervisors: results });
                 }
             });
         });
@@ -57,7 +57,7 @@ const getSupervisorById = async (id) => {
                     reject({ status: "failed", message: 'Error fetching supervisor  by ID:', error: error });
                 } else {
                     // If the selection is successful, resolve the promise with the fetched intern
-                    resolve({ status: "success", intern: results[0] });
+                    resolve({ status: "success", supervisor: results[0] });
                 }
             });
         });

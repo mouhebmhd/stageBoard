@@ -19,7 +19,8 @@ const createSupervisorTable = async () => {
                 supervisorEstablishment VARCHAR(255) NOT NULL,
                 supervisorPhoto VARCHAR(255) NOT NULL,
                 supervisorBirthDate DATE NOT NULL,
-                supervisorPhone VARCHAR(255) NOT NULL
+                supervisorPhone VARCHAR(255) NOT NULL,
+                AccountStatus VARCHAR(255) NOT NULL
             )
         `;
 

@@ -43,7 +43,8 @@ const {createSkillTable}=require("./schemas/createSkillTable")
 createSkillTable()
 const {createSupervisorTable}=require("./schemas/createSupervisorTable")
 createSupervisorTable()
-
+const {createCandidatureTable}=require("./schemas/createCandidatureTable")
+createCandidatureTable()
 /******* Intern Routers********/
 
 /*****Get Routers *****/
@@ -55,7 +56,10 @@ app.use('/', internGetRouter);
 const supervisorGetRouter = require('./routes/supervisorRouter/getRouter/getSupervisorRouter');
 /* Using Routers */
 app.use('/', supervisorGetRouter);
-
+/* Importing Routers */
+const candidaturesGetRouters = require('./routes/candidatureRouters/getRouters/getRouters');
+/* Using Routers */
+app.use('/', candidaturesGetRouters);
 /*****Auth Routers *****/
 /* Importing Routers */
 const authRouter=require("./routes/authentificationRouters/authetificationRouter")
@@ -66,19 +70,60 @@ app.use("/",authRouter);
 const deleteInterRouter=require("./routes/internRouter/deleteRouter/deleteInternRouter")
 /* Using Delete Router */
 app.use('/',deleteInterRouter);
+/* Importing Routers */
+const deleteProjectRouter=require("./routes/projectRouter/deleteRouters/deleteProjectsRouter")
+/* Using Delete Router */
+app.use('/',deleteProjectRouter);
+/* Importing Routers */
+const deleteSupervisor=require("./routes/supervisorRouter/deleteRouter/deleteSupervisorRouter")
+/* Using Delete Router */
+app.use("/",deleteSupervisor)
 
+
+
+/*****Get Routers *****/
+/* Importing Routers */
+const projectRouters=require("./routes/projectRouter/getRouters/getProjectsRouter")
+/* Using get Router */
+app.use('/',projectRouters);
 /*****POST Routers *****/
 /* Importing Routers */
 const postInterRouter=require("./routes/internRouter/postRouter/postRouter");
-const postSupervisorRouter=require("./routes/supervisorRouter/postRouter/postSupervisor")
+const postSupervisorRouter=require("./routes/supervisorRouter/postRouter/postSupervisor");
+const postProject=require("./routes/projectRouter/postRouters/postProjectsRouter");
+const postCandidature=require("./routes/candidatureRouters/postRouters/postRouter");
 /* Using Post Router */
 app.use('/',postInterRouter);
 app.use('/',postSupervisorRouter);
+app.use("/",postProject);
+app.use("/",postCandidature)
+
 /*****Update Routers *****/
 /* Importing Routers */
 const updateInterRouter=require("./routes/internRouter/updateRouter/updateRouter")
 /* Using Update Router */
 app.use('/',updateInterRouter);
+/* Importing Routers */
+const updateOffer=require("./routes/projectRouter/updateRouters/updateProjectsRouter")
+/* Using Update Router */
+app.use('/',updateOffer);
+/* Importing Routers */
+const updateSupervisor=require("./routes/supervisorRouter/updateRouter/updateRouter")
+/* Using Update Router */
+app.use('/',updateSupervisor);
+/* Importing Routers */
+const updateCandidatureRouter=require('./routes/candidatureRouters/updateRouters/updateRouter')
+/* Using Update Router */
+app.use('/',updateCandidatureRouter)
+
+
+
+
+
+
+
+
+
 /* Server Listening */
 const PORT_PRIMARY = process.env.PORT_PRIMARY;
 const PORT_SECONDARY = process.env.PORT_SECONDARY;

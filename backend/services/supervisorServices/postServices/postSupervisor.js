@@ -12,14 +12,14 @@ const postSupervisor = async (newSupervisor) => {
         // Prepare SQL query to insert the supervisor
         const insertQuery = `
             INSERT INTO Supervisors 
-                (supervisorName, supervisorFirstName, supervisorEmail, supervisorPassword, supervisorLevel, supervisorGender, supervisorEstablishment, supervisorPhoto, supervisorBirthDate, supervisorPhone,AccountStatus) 
+                (supervisorName, supervisorFirstName, supervisorEmail, supervisorPassword, supervisorLevel, supervisorGender, supervisorEstablishment, supervisorPhoto, supervisorBirthDate, supervisorPhone) 
             VALUES 
                 (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `;
-
+           
         // Execute the SQL query
-        return new Promise((resolve, reject) => {
-            connection.query(insertQuery, [newSupervisor.supervisorName, newSupervisor.supervisorFirstName, newSupervisor.supervisorEmail, hashedPassword, newSupervisor.supervisorLevel, newSupervisor.supervisorGender, newSupervisor.supervisorEstablishment, newSupervisor.supervisorPhoto, newSupervisor.supervisorBirthDate, newSupervisor.supervisorPhone,"frozen"], (error, results, fields) => {
+         return new Promise((resolve, reject) => {
+            connection.query(insertQuery, [newSupervisor.supervisorName, newSupervisor.supervisorFirstName, newSupervisor.supervisorEmail, hashedPassword, newSupervisor.supervisorLevel, newSupervisor.supervisorGender, newSupervisor.supervisorEstablishment, newSupervisor.supervisorPhoto, newSupervisor.supervisorBirthDate, newSupervisor.supervisorPhone], (error, results, fields) => {
                 connection.end(); // Close the connection
                 if (error) {
                     console.error(error);
@@ -28,7 +28,7 @@ const postSupervisor = async (newSupervisor) => {
                     resolve({ status: "success", message: 'Supervisor inserted successfully' });
                 }
             });
-        });
+        }); 
     } catch (error) {
         console.error(error);
         return { status: "failed", message: 'Error connecting to database:', error: error };

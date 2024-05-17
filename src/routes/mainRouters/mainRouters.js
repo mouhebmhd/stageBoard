@@ -12,6 +12,8 @@ import ManageSupervisors from "../../views/manageSupervisors.js"
 import ManageProfile from "../../views/manageProfile.js"
 import ContactUs from '../../views/contactUs.js';
 import Candidatures from '../../views/candidatures.js';
+import AddOffer from "../../views/addOffer.js"
+import UpdateOffer from '../../views/modifyOffer.js';
 export default function mainRouters() {
   return (
     <Routes>
@@ -29,6 +31,8 @@ export default function mainRouters() {
     <Route path='/user/manageProfile' element={<ManageProfile />}></Route>
     <Route path='/contact' element={<ContactUs />}></Route>
     <Route path='/candidatures' element={<Candidatures />}></Route>
+    <Route path='/addOffer' element={<AddOffer />}></Route>
+    <Route path='/offer/updateOffer/:id' element={<UpdateOffer />}></Route>
    </Routes>
   )
 }

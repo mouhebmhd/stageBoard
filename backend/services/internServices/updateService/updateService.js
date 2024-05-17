@@ -1,6 +1,6 @@
 const connectToDatabase = require('../../../database/databaseOperations');
 const bcrypt=require("bcrypt")
-const updateService = async (internID, newInternData) => {
+const updateService = async (newInternData) => {
     let connection;
      try {
         // Establish connection to the database
@@ -20,7 +20,7 @@ const updateService = async (internID, newInternData) => {
                 internBirthDate = ?,
                 internPhone = ?,
                 internAccountStatus = ?
-            WHERE internId =${internID}
+            WHERE internId =${newInternData.internId}
         `;
         // Hash the new password if provided
         let hashedPassword;

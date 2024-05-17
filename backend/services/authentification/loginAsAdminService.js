@@ -23,7 +23,7 @@ async function loginAsAdminService(email, password, role) {
                         // Compare the provided password with the hashed password stored in the database
                         const passwordMatch = await bcrypt.compare(password, user.passwordAdmin);
                         if (passwordMatch) {
-                            resolve({status:"success",message:"account  found  "}); // Passwords match, return the user
+                            resolve({status:"success",message:"account  found  ",userId:user.adminId}); // Passwords match, return the user
                         } else {
                             resolve({status:"failed",message:"password incorrect "}); // Incorrect password
                         }
