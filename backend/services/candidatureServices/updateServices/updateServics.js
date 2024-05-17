@@ -1,7 +1,7 @@
 const connectToDatabase = require("../../../database/databaseOperations");
 
 const updateCandidatureById = async (candidatureId,updatedCandidature ) => {
- /*   try {
+  try {
         // Establish connection to the database
         const connection = await connectToDatabase();
         
@@ -42,7 +42,7 @@ const updateCandidatureById = async (candidatureId,updatedCandidature ) => {
     } catch (error) {
         console.log(error);
         return { status: "failed", message: 'Error connecting to database:', error: error };
-    } */
+    } 
 };
 
 module.exports = { updateCandidatureById };

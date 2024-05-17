@@ -2,7 +2,7 @@ const {updateCandidatureById}=require("../../../services/candidatureServices/upd
 const updateController=async (req,res)=>{
     try
     {
-        console.log(type(req.body))
+       
     const updateResult=await updateCandidatureById(req.body.id,req.body);
     res.send(updateResult)
     }

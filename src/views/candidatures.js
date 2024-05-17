@@ -27,9 +27,12 @@ function Candidatures () {
     })
   },[role])
   const refuserCandidature=(candidatureId,newCandidature)=>{
-    axios.put("http://localhost:3030/candidature/updateCandidature/",{newCandidature})
+    axios.put("http://localhost:3030/candidature/updateCandidature/",newCandidature)
     .then(response=>{
-      console.log(response.data)
+      if(response.data.status=="success")
+        {
+          window.location.reload()
+        }
     })
     .catch(error=>{
       console.log(error)
