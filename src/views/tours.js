@@ -41,9 +41,17 @@ export default function Tours() {
   useEffect(()=>{
   axios.get("http://localhost:3030/project/getProjects/")
   .then((response)=>{
-    setOffers((response.data.projects))
-    const userId=(localStorage.getItem("supervisorId"))
-    console.log(response.data.projects.filter((element,index)=>{return element.supervisorId==userId}))
+    if(response.data.projects.length>0)
+      {
+        setOffers((response.data.projects))
+        const userId=(localStorage.getItem("supervisorId"))
+        console.log(response.data.projects.filter((element,index)=>{return element.supervisorId==userId}))
+      }
+      else
+      {
+        setOffers([])
+      }
+   
   })
   .catch(error=>{
     console.log(error)
