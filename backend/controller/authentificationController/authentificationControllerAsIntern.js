@@ -11,7 +11,7 @@ const authentificationAsInternController = async (req, res) => {
             const token = createToken(loginResult, process.env.SECRET_KEY,180);
 
             // Attach the token to a cookie
-            return({ status: "success", message: "Login successful",token,role:"intern" });
+            return({ status: "success", message: "Login successful",token,role:"intern",data:loginResult});
         } else {
             return({ status: "error", message: "Invalid credentials" });
         }

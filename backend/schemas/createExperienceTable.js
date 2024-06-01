@@ -10,13 +10,12 @@ const createExperienceTable = async () => {
         const createExperienceQuery = `
             CREATE TABLE IF NOT EXISTS Experience (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                experienceHolderId INT NOT NULL,
+                experienceHolderId VARCHAR(255) NOT NULL,
                 experienceCompany VARCHAR(255) NOT NULL,
                 experienceStartDate DATE NOT NULL,
                 experienceEndDate DATE NOT NULL,
                 experienceMission VARCHAR(255) NOT NULL,
-                experienceDescription VARCHAR(255) NOT NULL,
-                FOREIGN KEY (experienceHolderId) REFERENCES Interns(internId)
+                experienceDescription VARCHAR(255) NOT NULL
             )`;
         // Execute the SQL query to create the Experience table
         connection.query(createExperienceQuery, (error, results, fields) => {

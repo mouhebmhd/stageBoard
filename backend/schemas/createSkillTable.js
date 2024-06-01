@@ -11,7 +11,8 @@ const createSkillTable = async () => {
             CREATE TABLE IF NOT EXISTS Skills (
                 skillId INT AUTO_INCREMENT PRIMARY KEY,
                 skillName VARCHAR(255) NOT NULL,
-                skillDescription TEXT NOT NULL
+                skillDescription TEXT NOT NULL,
+                skillHolderId VARCHAR(255) NOT NULL
             )
         `;
 

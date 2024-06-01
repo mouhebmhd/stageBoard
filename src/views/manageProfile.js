@@ -5,8 +5,63 @@ import axios from 'axios'
 import avatar from '../../src/images/avatar.png'
 import Navbar from '../components/navbar'
 function Profil () {
-  const educations=[]
-  const experiences=[]
+  const [user, setUser] = useState({
+    supervisorId: '',
+    supervisorName: '',
+    supervisorFirstName: '',
+    supervisorEmail: '',
+    supervisorPassword: '',
+    supervisorLevel: '',
+    supervisorGender: '',
+    supervisorEstablishment: '',
+    supervisorPhoto: '',
+    supervisorBirthDate: '',
+    supervisorPhone: '',
+    AccountStatus: '',
+  });
+  const [intern, setIntern] = useState({
+    internName: '',
+    internFirstName: '',
+    internEmail: '',
+    internId: '',
+    internPassword: '',
+    internLevel: '',
+    internGender: '',
+    internEstablishment: '',
+    internPhoto: '',
+    internBirthDate: '',
+    internPhone: '',
+    internAccountStatus: '',
+  });
+  const role=localStorage.getItem('role')
+    const userId=localStorage.getItem(role+'Id');
+  useEffect(()=>{
+    
+    if(role=="intern")
+        {
+          axios.get(`http://localhost:3030/intern/getIntern/?id=${userId}`)
+          .then(response=>{
+            setUser(response.data.intern)
+          })
+        }
+        if(role=="supervisor")
+          {
+            axios.get(`http://localhost:3030/supervisor/getSupervisorById/?id=${userId}`)
+            .then(response=>{
+              setUser(response.data.supervisor)
+            })
+          }
+    axios.get('http://localhost:3030/education/getAllEducations/')
+    .then((response)=>{
+      setEducations(response.data.educations.filter((element,index)=>{
+        return element.educationHolderId==localStorage.getItem("userEmail")
+      }))
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  },[role])
+
   const getCookies = (name) => {
     const cookieString = document.cookie;
     const cookies = cookieString.split(';').map(cookie => cookie.trim());
@@ -20,20 +75,11 @@ function Profil () {
     
     return null; // If cookie with the given name is not found
   };
-  
-  const [userData, setUserData] = useState({
-    userFirstName: '',
-    userEmail: '',
-    hashedPassword: '',
-    userLevel: '',
-    userGender: '',
-    userEstablishment: '',
-    userPhoto: '',
-    userBirthDate: '',
-    userPhone: ''
-  })
+  const [educations,setEducations]=useState([])  
+  const [experiencess,setExperiences]=useState([])
+
   const [education, setEducation] = useState({
-    educationHolderId: '',
+    educationHolderId:localStorage.getItem("userEmail"),
     educationLevel: '',
     educationInstitution: '',
     educationStartDate: '',
@@ -50,6 +96,23 @@ function Profil () {
     experienceDescription: ''
   });
   const addEducation=()=>{
+    
+    axios.post("http://localhost:3030/education/addNewEducation/",education)
+    .then(response=>{
+      console.log(response.data)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+    setEducation({
+      educationHolderId:localStorage.getItem("userEmail"),
+      educationLevel: '',
+      educationInstitution: '',
+      educationStartDate: '',
+      educationEndDate: '',
+      educationDiploma: '',
+      educationDistinction: ''
+    })
     const educationStep=(document.getElementsByClassName("educationStep")[0]).cloneNode(true)
     const educations=(document.getElementsByClassName("educations")[0])
     educations.appendChild(educationStep)
@@ -60,17 +123,35 @@ function Profil () {
     experiences.appendChild(experienceStep)
   }
   const updateProfile=()=>{
+    if(role=='intern')
+      {
 
+      }
+    if(role=='admin')
+      {
+
+      }
+    if(role=='supervisor')
+      {
+        axios.put("http://localhost:3030/supervisor/updateSupervisor/",user)
+        .then(response=>{
+          if(response.data.status=='success')
+            {
+              window.location.reload()
+            }
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+      }
   }
-  useEffect(()=>{
-    const cookie=getCookies("currentUser");
-    console.log(JSON.parse(cookie))
-  },[])
+  
 
 
 
   const handleInputChange = (field, value) => {
-    setUserData(prevUser => ({
+    console.log(value)
+    setUser(prevUser => ({
       ...prevUser,
       [field]: value
     }))
@@ -101,7 +182,7 @@ function Profil () {
               style={{ backgroundImage: `url(${avatar})` }}
             ></div>
             <h1 className='specialText h1 sectionTitle'>Informations Personnelles </h1>
-            <div className='col-12 mt-2'>
+            {role=="supervisor" && <div className='col-12 mt-2'>
               <form className='col-12'>
                 <div className='row justify-content-between'>
                   <div className='mb-3 col-lg-5'>
@@ -112,9 +193,10 @@ function Profil () {
                       type='text'
                       className='form-control'
                       id='firstNameInput'
+                      value={user.supervisorFirstName}
                       placeholder='Entrez votre prénom'
                       onChange={event => {
-                        handleInputChange('firstName', event.target.value)
+                        handleInputChange('supervisorFirstName', event.target.value)
                       }}
                     />
                   </div>
@@ -124,11 +206,12 @@ function Profil () {
                     </label>
                     <input
                       type='text'
+                      value={user.supervisorName}
                       className='form-control'
                       id='lastNameInput'
                       placeholder='Entrez votre nom de famille'
                       onChange={event => {
-                        handleInputChange('lastName', event.target.value)
+                        handleInputChange('supervisorName', event.target.value)
                       }}
                     />
                   </div>
@@ -140,10 +223,11 @@ function Profil () {
                       type='email'
                       className='form-control'
                       id='emailInput'
+                      value={user.supervisorEmail}
                       aria-describedby='emailHelp'
                       placeholder='Entrez votre adresse email'
                       onChange={event => {
-                        handleInputChange('email', event.target.value)
+                        handleInputChange('supervisorEmail', event.target.value)
                       }}
                     />
                     <div id='emailHelp' className='form-text'>
@@ -151,38 +235,7 @@ function Profil () {
                       quelqu'un d'autre.
                     </div>
                   </div>
-                  <div className='mb-3 col-lg-5'>
-                    <label htmlFor='passwordInput' className='form-label'>
-                      Mot de passe
-                    </label>
-                    <input
-                      type='password'
-                      className='form-control'
-                      id='passwordInput'
-                      placeholder='Entrez votre mot de passe'
-                      onChange={event => {
-                        handleInputChange('password', event.target.value)
-                      }}
-                    />
-                  </div>
-                  <div className='mb-3 col-lg-5'>
-                    <label htmlFor='LevelInput' className='form-label'>
-                      Niveau de stage
-                    </label>
-                    <select
-                      className='form-control'
-                      id='LevelInput'
-                      onChange={event => {
-                        handleInputChange('level', event.target.value)
-                      }}
-                    >
-                      <option>Veuillez choisir votre niveau d'études</option>
-                      <option>Licence</option>
-                      <option>Master</option>
-                      <option>Ingénierie</option>
-                      <option>Autre</option>
-                    </select>
-                  </div>
+           
                   <div className='mb-3 col-lg-5'>
                     <label htmlFor='GenderInput' className='form-label'>
                       Genre
@@ -191,13 +244,13 @@ function Profil () {
                       className='form-select'
                       id='GenderInput'
                       onChange={event => {
-                        handleInputChange('gender', event.target.value)
+                        handleInputChange('supervisorGender', event.target.value)
                       }}
                     >
-                      <option value=''>Sélectionnez votre genre</option>
-                      <option value='male'>Homme</option>
+                      <option value='' disabled>Sélectionnez votre genre</option>
+                      <option value="male" selected={user.supervisorGender === "Male"}>Homme</option>
                       <option value='female'>Femme</option>
-                      <option value='other'>Autre</option>
+                      <option value='other' >Autre</option>
                     </select>
                   </div>
                   <div className='mb-3 col-lg-5'>
@@ -209,24 +262,13 @@ function Profil () {
                       className='form-control'
                       id='EstablishmentInput'
                       placeholder='Entrez votre établissement'
+                      value={user.supervisorEstablishment}
                       onChange={event => {
-                        handleInputChange('establishment', event.target.value)
+                        handleInputChange('supervisorEstablishment', event.target.value)
                       }}
                     />
                   </div>
-                  <div className='mb-3 col-lg-5'>
-                    <label htmlFor='BirthDateInput' className='form-label'>
-                      Date de naissance
-                    </label>
-                    <input
-                      type='date'
-                      className='form-control'
-                      id='BirthDateInput'
-                      onChange={event => {
-                        handleInputChange('birthDate', event.target.value)
-                      }}
-                    />
-                  </div>
+                  
                   <div className='mb-3 col-lg-5'>
                     <label htmlFor='PhoneInput' className='form-label'>
                       Téléphone
@@ -235,16 +277,236 @@ function Profil () {
                       type='tel'
                       className='form-control'
                       id='PhoneInput'
+                      value={user.supervisorPhone}
                       placeholder='Entrez votre numéro de téléphone'
                       onChange={event => {
-                        handleInputChange('phone', event.target.value)
+                        handleInputChange('supervisorPhone', event.target.value)
                       }}
                     />
                   </div>
                 </div>
               </form>
-            </div>
+            </div>}
+            {role=="intern" && <div className='col-12 mt-2'>
+              <form className='col-12'>
+                <div className='row justify-content-between'>
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='firstNameInput' className='form-label'>
+                      Prénom
+                    </label>
+                    <input
+                      type='text'
+                      className='form-control'
+                      id='firstNameInput'
+                      value={user.internFirstName}
+                      placeholder='Entrez votre prénom'
+                      onChange={event => {
+                        handleInputChange('internFirstName', event.target.value)
+                      }}
+                    />
+                  </div>
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='lastNameInput' className='form-label'>
+                      Nom de famille
+                    </label>
+                    <input
+                      type='text'
+                      value={user.internName}
+                      className='form-control'
+                      id='lastNameInput'
+                      placeholder='Entrez votre nom de famille'
+                      onChange={event => {
+                        handleInputChange('internName', event.target.value)
+                      }}
+                    />
+                  </div>
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='emailInput' className='form-label'>
+                      Adresse email
+                    </label>
+                    <input
+                      type='email'
+                      className='form-control'
+                      id='emailInput'
+                      value={user.internEmail}
+                      aria-describedby='emailHelp'
+                      placeholder='Entrez votre adresse email'
+                      onChange={event => {
+                        handleInputChange('internEmail', event.target.value)
+                      }}
+                    />
+                    <div id='emailHelp' className='form-text'>
+                      Nous ne partagerons jamais votre adresse email avec
+                      quelqu'un d'autre.
+                    </div>
+                  </div>
+           
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='GenderInput' className='form-label'>
+                      Genre
+                    </label>
+                    <select
+                      className='form-select'
+                      id='GenderInput'
+                      onChange={event => {
+                        handleInputChange('internGender', event.target.value)
+                      }}
+                    >
+                      <option value='' disabled>Sélectionnez votre genre</option>
+                      <option value="male" selected={user.internGender === "Male"}>Homme</option>
+                      <option value='female'>Femme</option>
+                      <option value='other' >Autre</option>
+                    </select>
+                  </div>
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='EstablishmentInput' className='form-label'>
+                      Établissement
+                    </label>
+                    <input
+                      type='text'
+                      className='form-control'
+                      id='EstablishmentInput'
+                      placeholder='Entrez votre établissement'
+                      value={user.internEstablishment}
+                      onChange={event => {
+                        handleInputChange('internEstablishment', event.target.value)
+                      }}
+                    />
+                  </div>
+                  
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='PhoneInput' className='form-label'>
+                      Téléphone
+                    </label>
+                    <input
+                      type='tel'
+                      className='form-control'
+                      id='PhoneInput'
+                      value={user.internPhone}
+                      placeholder='Entrez votre numéro de téléphone'
+                      onChange={event => {
+                        handleInputChange('internPhone', event.target.value)
+                      }}
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>}
+            {role=="admin" && <div className='col-12 mt-2'>
+              <form className='col-12'>
+                <div className='row justify-content-between'>
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='firstNameInput' className='form-label'>
+                      Prénom
+                    </label>
+                    <input
+                      type='text'
+                      className='form-control'
+                      id='firstNameInput'
+                      value={user.adminFirstName}
+                      placeholder='Entrez votre prénom'
+                      onChange={event => {
+                        handleInputChange('adminFirstName', event.target.value)
+                      }}
+                    />
+                  </div>
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='lastNameInput' className='form-label'>
+                      Nom de famille
+                    </label>
+                    <input
+                      type='text'
+                      value={user.adminName}
+                      className='form-control'
+                      id='lastNameInput'
+                      placeholder='Entrez votre nom de famille'
+                      onChange={event => {
+                        handleInputChange('adminName', event.target.value)
+                      }}
+                    />
+                  </div>
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='emailInput' className='form-label'>
+                      Adresse email
+                    </label>
+                    <input
+                      type='email'
+                      className='form-control'
+                      id='emailInput'
+                      value={user.adminEmail}
+                      aria-describedby='emailHelp'
+                      placeholder='Entrez votre adresse email'
+                      onChange={event => {
+                        handleInputChange('adminEmail', event.target.value)
+                      }}
+                    />
+                    <div id='emailHelp' className='form-text'>
+                      Nous ne partagerons jamais votre adresse email avec
+                      quelqu'un d'autre.
+                    </div>
+                  </div>
+           
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='GenderInput' className='form-label'>
+                      Genre
+                    </label>
+                    <select
+                      className='form-select'
+                      id='GenderInput'
+                      onChange={event => {
+                        handleInputChange('adminGender', event.target.value)
+                      }}
+                    >
+                      <option value='' disabled>Sélectionnez votre genre</option>
+                      <option value="male" selected={user.adminGender === "Male"}>Homme</option>
+                      <option value='female'>Femme</option>
+                      <option value='other' >Autre</option>
+                    </select>
+                  </div>
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='EstablishmentInput' className='form-label'>
+                      Établissement
+                    </label>
+                    <input
+                      type='text'
+                      className='form-control'
+                      id='EstablishmentInput'
+                      placeholder='Entrez votre établissement'
+                      value={user.adminEstablishment}
+                      onChange={event => {
+                        handleInputChange('adminEstablishment', event.target.value)
+                      }}
+                    />
+                  </div>
+                  
+                  <div className='mb-3 col-lg-5'>
+                    <label htmlFor='PhoneInput' className='form-label'>
+                      Téléphone
+                    </label>
+                    <input
+                      type='tel'
+                      className='form-control'
+                      id='PhoneInput'
+                      value={user.adminPhone}
+                      placeholder='Entrez votre numéro de téléphone'
+                      onChange={event => {
+                        handleInputChange('adminPhone', event.target.value)
+                      }}
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>}
           </div>
+          <div className='row mt-2 mb-2 d-flex justify-content-center'>
+          <button
+            type='button'
+            className='btn btn-primary submitBTN'
+            onClick={updateProfile}
+          >
+            Mettre à jour Vos informations
+          </button>
+        </div>
           <div className='col d-flex justify-content-center flex-column p-2 align-items-center'>
             <h1 className='specialText sectionTitle'>Parcours Academique </h1>
             <div className='col-12 mt-2 '>
@@ -453,15 +715,7 @@ function Profil () {
           </div>
           
         </div>
-        <div className='row mt-2 mb-2 d-flex justify-content-center'>
-          <button
-            type='button'
-            className='btn btn-primary submitBTN'
-            onClick={updateProfile}
-          >
-            Mettre à jour Vos informations
-          </button>
-        </div>
+     
       </div>
     </>
   )

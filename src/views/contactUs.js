@@ -1,163 +1,58 @@
-import React, { useEffect, useState } from 'react'
-import '../styles/manageProfil.css'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-import avatar from '../../src/images/avatar.png'
-import Navbar from '../components/navbar'
-function ContactUs () {
-  const userID = useParams().id
-  const [userData, setUserData] = useState({
-    userFirstName: '',
-    userEmail: '',
-    hashedPassword: '',
-    userLevel: '',
-    userGender: '',
-    userEstablishment: '',
-    userPhoto: '',
-    userBirthDate: '',
-    userPhone: ''
-  })
-  const addEducation=()=>{
-    const educationStep=(document.getElementsByClassName("educationStep")[0]).cloneNode(true)
-    const educations=(document.getElementsByClassName("educations")[0])
-    educations.appendChild(educationStep)
-  }
-  const addExperience=()=>{
-    const experienceStep=(document.getElementsByClassName("experienceStep")[0]).cloneNode(true)
-    const experiences=(document.getElementsByClassName("experiences")[0])
-    experiences.appendChild(experienceStep)
-  }
+import React, { useState, useEffect } from 'react';
+import "../styles/messagingStyle.css";
+import Navbar from '../components/navbar';
+import { IoMdMail } from "react-icons/io";
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3030/user/getProfileInfo/${userID}`)
-      .then(response => {
-        setUserData(response.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }, [userID])
+export default function Messaging() {
+  const [messages, setMessages] = useState([
+    { id: 1, content: "Bonjour! Comment ça va?", sender: "Vous" },
+    { id: 2, content: "Bonjour! Je vais bien, merci. Et vous?", sender: "Encadrant" },
+    { id: 3, content: "Je vais bien aussi, merci! J'ai une question sur le projet.", sender: "Vous" },
+    { id: 4, content: "Bien sûr, je suis là pour vous aider. Quelle est votre question?", sender: "Encadrant" },
+    { id: 5, content: "Je ne suis pas sûr de comprendre la dernière partie de la tâche. Pouvez-vous m'expliquer?", sender: "Vous" },
+    { id: 6, content: "Bien sûr. La dernière partie consiste à intégrer les nouvelles fonctionnalités que nous avons discutées. Vous devez suivre les étapes mentionnées dans le guide du projet.", sender: "Encadrant" },
+    { id: 7, content: "D'accord, je vais m'y mettre tout de suite. Merci pour l'explication!", sender: "Vous" },
+    { id: 8, content: "De rien! N'hésitez pas à me contacter si vous avez d'autres questions.", sender: "Encadrant" }
+]);
 
-  const [user, setUser] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    level: '',
-    gender: '',
-    establishment: '',
-    birthDate: '',
-    phone: ''
-  })
-
-  const handleInputChange = (field, value) => {
-    setUser(prevUser => ({
-      ...prevUser,
-      [field]: value
-    }))
-  }
-
-  function updateProfile () {
-    // Define an array to hold error messages for empty fields
-    const errors = []
-
-    // Check each field and add an error message if it's empty
-    if (!user.firstName.trim()) {
-      errors.push('First Name is required')
-    }
-
-    if (!user.email.trim()) {
-      errors.push('Email is required')
-    }
-
-    if (!user.phone.trim()) {
-      errors.push('Phone Number is required')
-    }
-
-    // Check if there are any errors
-    if (errors.length > 0) {
-      // Display error messages or handle them as needed
-      for (const error of errors) {
-        console.error(error)
-      }
-    } else {
-      // If there are no errors, you can proceed with the update
-      axios
-        .put('http://localhost:3030/user/updateProfile/', user)
-        .then(response => {
-          console.log(response)
-          window.location.reload()
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    }
-  }
 
   return (
     <>
-      <Navbar></Navbar>
-      <div className='container profilUpdateContainer'>
-        <div className='row d-flex flex-column'>
-          <h1 className='text-center pageTitle'>Contactez Nous </h1>
-          <div className='col d-flex justify-content-center flex-column p-2 align-items-center'>
-            <div
-              className='profilPhotoContainer'
-              style={{ backgroundImage: `url(${avatar})` }}
-            ></div>
-            <div className='col-12 mt-2'>
-            <form className='col-12'>
-  <div className="row justify-content-between">
-    <div className='mb-3 col-lg-5'>
-      <label htmlFor='fullNameInput' className='form-label'>
-        Full Name
-      </label>
-      <input
-        type='text'
-        className='form-control'
-        id='fullNameInput'
-        placeholder='Enter your full name'
-      />
-    </div>
-    <div className='mb-3 col-lg-5'>
-      <label htmlFor='emailInput' className='form-label'>
-        Email Address
-      </label>
-      <input
-        type='email'
-        className='form-control'
-        id='emailInput'
-        placeholder='Enter your email address'
-      />
-    </div>
-    <div className='mb-3 col-lg-10'>
-      <label htmlFor='messageInput' className='form-label'>
-        Message
-      </label>
-      <textarea
-        className='form-control'
-        id='messageInput'
-        rows='5'
-        placeholder='Enter your message'
-      ></textarea>
-    </div>
-  </div>
-  <div className="col-12 d-flex justify-content-center">
-  <button type='submit ' className='btn btn-success '>Envoyer votre message</button>
-
-  </div>
-</form>
-
+      <Navbar />
+      <div className="container-fluid page-body-wrapper">
+        <div className="container-fluid main-panel" id="main-panel-home">
+          <div className="content-wrapper" id="main-panel-wrapper">
+            <div className="row">
+              <h5 className="title titleContainer p-2 text-center">Centre de Messagerie</h5>
             </div>
+            {messages.length > 0 ? (
+              <div className="row d-flex flex-column p-1 mt-2">
+                {messages.map(message => (
+                  <div className="col-10 mb-2 message p-2 d-flex" key={message.id}>
+                    <div className="messageImageContainer d-flex flex-column align-items-center justify-content-center text-light">
+                      <IoMdMail className='icon' />
+                    </div>
+                    <div className="col ml-2 p-2">
+                      <strong>{message.sender}:</strong> {message.content}
+                    </div>
+                  </div>
+                ))}
+                <div className='d-flex column-gap-2 p-2' >
+                  <input type="text" className='form-control' placeholder='votre message ici' />
+                  <button className='btn submitBTN text-white'>Envoyer</button>
+                </div>
+              </div>
+            
+            ) : (
+              <div className="row d-flex flex-column p-1 mt-2">
+                <div className="container-fluid text-center mt-2 noMessagesMessage h3">
+                  Vous n'avez aucun nouveau message !
+                </div>
+              </div>
+            )}
           </div>
-
-          
         </div>
-      
       </div>
     </>
-  )
+  );
 }
-
-export default ContactUs

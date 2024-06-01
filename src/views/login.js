@@ -69,11 +69,12 @@ const getCookies = (name) => {
           });
           localStorage.setItem("currentUser",loginResult.data.token)
           localStorage.setItem("role",loginResult.data.role)
-          console.log(loginResult.data)
+          localStorage.setItem(loginResult.data.role+"Id",loginResult.data.data.userId)
+          localStorage.setItem('userEmail',loginResult.data.data.userEmail)
          setTimeout(() => {
-           
-            navigate("/mainPage");
-          }, 2000); 
+          navigate("/mainPage");            
+          }, 2000);  
+          console.log(loginResult)
         } else {
           errorMessage.current.classList.remove("d-none");
         }

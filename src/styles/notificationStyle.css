@@ -1,0 +1,27 @@
+.notification
+{
+  background-color: white;
+  border-radius: 10px;
+  border:1px solid #4B49AC;
+  border-left:3px solid #4B49AC;
+  margin-bottom: 20px !important;
+}
+.notificationImageContainer
+{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #4B49AC;
+}
+.page-body-wrapper{
+    margin-top: 75px;
+}
+.titleContainer{
+    font-size: 20px !important;
+    color: var(--primaryColor);
+}
+.icon
+{
+    font-size: 50px;
+    color: #fff;
+}

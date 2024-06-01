@@ -37,8 +37,7 @@ const {createNotificationTable}=require("./schemas/createNotificationTable")
 createNotificationTable()
 const {createProjectTable}=require("./schemas/createProjectTable")
 createProjectTable()
-const {createRequirementTable}=require("./schemas/createRequirementTable")
-createRequirementTable()
+
 const {createSkillTable}=require("./schemas/createSkillTable")
 createSkillTable()
 const {createSupervisorTable}=require("./schemas/createSupervisorTable")
@@ -60,6 +59,16 @@ app.use('/', supervisorGetRouter);
 const candidaturesGetRouters = require('./routes/candidatureRouters/getRouters/getRouters');
 /* Using Routers */
 app.use('/', candidaturesGetRouters);
+/* Importing Routers */
+const educationRouters = require('./routes/educationRouters/educationRouters');
+/* Using Routers */
+app.use('/',educationRouters)
+
+
+
+
+
+
 /*****Auth Routers *****/
 /* Importing Routers */
 const authRouter=require("./routes/authentificationRouters/authetificationRouter")
@@ -115,7 +124,6 @@ app.use('/',updateSupervisor);
 const updateCandidatureRouter=require('./routes/candidatureRouters/updateRouters/updateRouter')
 /* Using Update Router */
 app.use('/',updateCandidatureRouter)
-
 
 
 

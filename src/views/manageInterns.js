@@ -75,9 +75,8 @@ const deleteIntern=(internId)=>{
                                             {intern.internAccountStatus === 'frozen' && <span className='text-warning fw-bold'>En Attente  </span>}
                                         </p>
                                         <div className='col d-flex justify-content-center flex-column row-gap-2'>
-                                        {<button className='btn btn-danger' onClick={() => deleteIntern(intern.internId)}>Supprimer l'utilisateur</button>}
                                             {intern.internAccountStatus!== 'active'  && <button className='btn btn-success text-light' onClick={() => activateIntern(intern,intern.internId)}>Activer l'utilisateur</button>}
-                                            {intern.internAccountStatus== 'active'  && <button className='btn btn-success text-light' onClick={() => decativateIntern(intern,intern.internId)}>Désactiver l'utilisateur</button>}
+                                            {intern.internAccountStatus== 'active'  && <button className='btn btn-danger text-light' onClick={() => decativateIntern(intern,intern.internId)}>Désactiver l'utilisateur</button>}
                                         </div>
                                     </div>
                                 </div>

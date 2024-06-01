@@ -28,8 +28,9 @@ const deleteSupervisor=(supervisorId)=>{
     })
     }
     const activateSupervisor=(supervisor,supervisorId)=>{
-        supervisor["AccountStatus"]="active";
-        axios.put("http://localhost:3030/supervisor/updateSupervisor/",{...supervisor})
+        supervisor.AccountStatus="active";
+        console.log(supervisor.AccountStatus)
+        axios.put("http://localhost:3030/supervisor/updateSupervisor/",supervisor)
         .then(response=>{
             if(response.data.status=='success')
                 {
@@ -38,7 +39,7 @@ const deleteSupervisor=(supervisorId)=>{
         })
     }
     const decativateSupervisor=(supervisor,supervisorId)=>{
-        supervisor["AccountStatus"]="frozen";
+        supervisor.AccountStatus="frozen";
         axios.put("http://localhost:3030/supervisor/updateSupervisor/",{...supervisor})
         .then(response=>{
             if(response.data.status=='success')
@@ -79,9 +80,8 @@ const deleteSupervisor=(supervisorId)=>{
                                             {supervisor.AccountStatus === 'frozen' && <span className='text-warning fw-bold'>En Attente  </span>}
                                         </p>
                                         <div className='col d-flex justify-content-center flex-column row-gap-2'>
-                                        {<button className='btn btn-danger' onClick={() => deleteSupervisor(supervisor.supervisorId)}>Supprimer l'utilisateur</button>}
                                             {supervisor.AccountStatus!== 'active'  && <button className='btn btn-success text-light' onClick={() => activateSupervisor(supervisor,supervisor.supervisorId)}>Activer l'utilisateur</button>}
-                                            {supervisor.AccountStatus== 'active'  && <button className='btn btn-success text-light' onClick={() => decativateSupervisor(supervisor,supervisor.supervisorId)}>Désactiver l'utilisateur</button>}
+                                            {supervisor.AccountStatus== 'active'  && <button className='btn btn-danger text-light' onClick={() => decativateSupervisor(supervisor,supervisor.supervisorId)}>Désactiver l'utilisateur</button>}
                                         </div>
                                     </div>
                                 </div>

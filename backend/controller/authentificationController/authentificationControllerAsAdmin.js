@@ -10,7 +10,8 @@ const authentificationAsAdminController = async (req, res) => {
             // Create token if login is successful
             const token = createToken(loginResult, process.env.SECRET_KEY,180);
             // Attach the token to a cookie
-            return({ status: "success", message: "Login successful",token,role:"admin"});
+            console.log({ status: "success", message: "Login successful",token,role:"admin",data:loginResult});
+            return({ status: "success", message: "Login successful",token,role:"admin",data:loginResult});
         } else {
             return({ status: "error", message: "Invalid credentials" });
         }

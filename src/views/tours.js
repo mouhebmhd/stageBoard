@@ -34,7 +34,7 @@ const updateOffer=(offerId,field,value,offer)=>{
 }
 const ratings = [4,3.5,2,5,1,3.5,4,2,4,3,2,1,5];
 const userToken=localStorage.getItem("currentUser")
-const role="admin"
+const role=localStorage.getItem("role")
 export default function Tours() {
   const navigate=useNavigate();
   const [offers,setOffers]=useState([])
@@ -42,6 +42,8 @@ export default function Tours() {
   axios.get("http://localhost:3030/project/getProjects/")
   .then((response)=>{
     setOffers((response.data.projects))
+    const userId=(localStorage.getItem("supervisorId"))
+    console.log(response.data.projects.filter((element,index)=>{return element.supervisorId==userId}))
   })
   .catch(error=>{
     console.log(error)
@@ -65,8 +67,6 @@ export default function Tours() {
       return null; // If cookie with the given name is not found
     };
   const addCandidature=(projectId)=>{
-  
-    
    const currentUserToken=(getCookies('currentUser').token)
     axios.post("http://localhost:3030/candidature/addCandidature/",{internToken:currentUserToken,projectId})
     .then(response=>{
@@ -79,14 +79,12 @@ export default function Tours() {
     <div className="tours p-2 m-0 mt-5 pt-5 " >
       <div className="col-12 p-2 d-flex justify-content-between">
       <h1 className='text-center pageTitle'>Offres de stage</h1>
+     {role=='admin' && 
       <Link to="/addOffer"> <button className="btn btn-primary submitBTN m-0">
                 Nouvelle Offre +
               </button>
-      </Link>
-     
-
+      </Link>}
       </div>
-
       <div className="row  m-0 p-0 toursList d-flex gap-3 justify-content-center" >
         {offers.map((offer, index) => (
           <div className="card m-0 p-0 col-lg-3 col-md-4 col-sm-12"  key={index}>
@@ -99,16 +97,8 @@ export default function Tours() {
               <span className='fw-light'>{offer.projectDescription}</span>
               </p>
               <p className="card-text tourDescription fw-medium">Domaine : <span className='fw-light'>{offer.projectDomain || "Developpement Informatique "}</span> </p>
-             <div className="container-fluid d-flex gap-2">
-              <Rating
-                name={`rating-${index}`}
-                value={ratings[index]}
-                precision={0.5}
-                readOnly
-                className='rating'
-              />
-              <p className="ratingValue fw-medium">{ratings[index]}</p>
-             </div>
+            
+
               
               
               <div className="container-fluid d-flex justify-content-between align-items-baseline">
@@ -122,6 +112,7 @@ export default function Tours() {
                 <IoLockClosed className='mx-1'></IoLockClosed>
                 Fermer la Candidature
               </button>}
+             
               {role=='admin' && 
               <button type='button' className="btn btn-dark m-0" onClick={(event)=>{event.preventDefault();navigate("/offer/updateOffer/"+offer.projectId)}}>
                 <IoLockClosed className='mx-1'></IoLockClosed>
@@ -132,10 +123,6 @@ export default function Tours() {
                 <IoLockClosed className='mx-1'></IoLockClosed>
                 Postuler Maintenant 
               </button>}
-              {role=='admin' && 
-              <Link to="/candidatures" className="btn btn-success">
-                Consulter les Candidatures
-              </Link>}
               {role=='admin' && 
               <button className="btn btn-danger" onClick={()=>{deleteProject(offer.projectId)}}>
               <MdOutlinePageview  className='mx-1'></MdOutlinePageview >

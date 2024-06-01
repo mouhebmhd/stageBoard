@@ -40,7 +40,7 @@ const updateService = async (newSupervisorData) => {
                 newSupervisorData.supervisorPhoto,
                 newSupervisorData.supervisorBirthDate,
                 newSupervisorData.supervisorPhone,
-                newSupervisorData.supervisorAccountStatus,
+                newSupervisorData.AccountStatus,
             ], (error, results, fields) => {
                 console.log(error)
                 // Close the connection
