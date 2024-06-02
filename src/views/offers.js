@@ -113,7 +113,7 @@ export default function Tours() {
                 <p>Statut du projet  <span className='tourPrice'>{offer.projectStatus}</span></p>
               </div>
               <div className="container-fluid d-flex flex-column row-gap-2">
-              {offer.projectStatus!="Candidature Fermée" && role=='admin' && <button className="btn btn-warning m-0" onClick={(event=>{
+              {offer.projectStatus!="Candidature Fermée" && role==='admin' && <button className="btn btn-warning m-0" onClick={(event=>{
                 event.preventDefault();
                 updateOffer(offer.projectId,"projectStatus","Candidature Fermée",offer)
               })}>
@@ -121,7 +121,7 @@ export default function Tours() {
                 Fermer la Candidature
               </button>}
              
-              {role=='admin' && 
+              {role==='admin' && 
               <button type='button' className="btn btn-dark m-0" onClick={(event)=>{event.preventDefault();navigate("/offer/updateOffer/"+offer.projectId)}}>
                 <IoLockClosed className='mx-1'></IoLockClosed>
                 Modifier  l'offre
@@ -131,7 +131,7 @@ export default function Tours() {
                 <IoLockClosed className='mx-1'></IoLockClosed>
                 Postuler Maintenant 
               </button>}
-              {role=='admin' && 
+              {role==='admin' && 
               <button className="btn btn-danger" onClick={()=>{deleteProject(offer.projectId)}}>
               <MdOutlinePageview  className='mx-1'></MdOutlinePageview >
                 Supprimer le projet 
