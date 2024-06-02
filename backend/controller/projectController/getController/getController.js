@@ -1,4 +1,7 @@
 const { getProjectById,getProjectByInternId,getProjectBySupervisorId,getProjects}=require("../../../services/projectServices/getService/getService")
+
+
+
 const getProjectControllerById=async(req,res)=>{
     const result=await getProjectById(req.query.id);
     res.send(result)

@@ -37,10 +37,11 @@
 {
     width: 100px !important;
     height: 100px !important;
-    background-color: red;
     margin: auto;
     border-radius: 50%;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 .pageTitle
 {

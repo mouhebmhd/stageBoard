@@ -43,6 +43,9 @@ const navigate=useNavigate()
   
             }
     })
+    .catch(error=>{
+      console.log(error)
+    })
     
    
   },[role])
@@ -96,7 +99,7 @@ const navigate=useNavigate()
                  modifierCandidature(candidature.id,{...candidature,"applicationStatus":"non affectée"})
                 }} >Accepter Candidature</button>}
                 {candidature.applicationStatus=='affectée' && role=='supervisor' && <button className='btn btn-success'  onClick={()=>{
-                 //refuser candidature 
+                 //accepter candidature 
                  modifierCandidature(candidature.id,{...candidature,"applicationStatus":"Demande acceptée"})
                 }} >Accepter Encadrement</button>}
                 {role=='intern' && <button className='btn btn-primary'>Annuler Candidature</button>}

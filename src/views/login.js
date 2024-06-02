@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/login.css";
-import userImage from "../images/fingerprint.png";
+import userImage from "../images/ttLogo.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
 export default function Login() {
@@ -151,7 +151,7 @@ const getCookies = (name) => {
           </button>
           <p>
             Pas encore inscrit ?{" "}
-           <span className="fw-semibold specialText" id="launchModal" data-bs-toggle="modal" data-bs-target="#exampleModal"> Créer un compte</span>{" "}
+           <span className="fw-semibold specialText" id="launchModal" onClick={()=>{navigateToView("/intern/createAccount/")}} > Créer un compte</span>{" "}
            <>
       <div className="modal  mt-5"  id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
         <div className="modal-dialog" role="document">

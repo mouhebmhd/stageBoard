@@ -63,12 +63,20 @@ app.use('/', candidaturesGetRouters);
 const educationRouters = require('./routes/educationRouters/educationRouters');
 /* Using Routers */
 app.use('/',educationRouters)
-
-
-
-
-
-
+/*importing get router  */
+const getMessagesGetRouter=require("./routes/messagesRouters/messagesRouters")
+/*using routers  */
+app.use("/",getMessagesGetRouter);
+const getMessagesPostRouter=require("./routes/messagesRouters/messagesRouters")
+/*using routers  */
+app.use("/",getMessagesPostRouter);
+const getNotificationsPostRouter=require("./routes/notificationRouters/notificationRouters")
+/*using routers  */
+app.use("/",getNotificationsPostRouter);
+/*importing get router  */
+const getNotificationGetRouter=require("./routes/notificationRouters/notificationRouters")
+/*using routers  */
+app.use("/",getNotificationGetRouter);
 /*****Auth Routers *****/
 /* Importing Routers */
 const authRouter=require("./routes/authentificationRouters/authetificationRouter")

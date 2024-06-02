@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../styles/notificationStyle.css"
 import Navbar from '../components/navbar'
 import { IoMdNotifications } from "react-icons/io";
-
+import { useState } from 'react';
+import axios from 'axios';
 export default function Notification() {
-    const notifications=[{id:1,contenu:"Un administrateur vous a assigné un nouveau candidat. Veuillez consulter l'espace candidature pour plus de détails."},{id:2,contenu:"Félicitations ! Votre demande d'approbation d'encadrement a été validée avec succès."}]
+    const [notifications,setNotifications]=useState([]);
+    const role=localStorage.getItem("role");
+    const userId=localStorage.getItem("userId");
+    useEffect(()=>{
+      axios.get("http://localhost:3030/notifications/getNotifications")
+      .then((response)=>{
+        setNotifications(response.data.notifications)
+      })
+      .catch(error=>{
+        console.log(error)
+      })
+    })
   return (
    <>
    <Navbar></Navbar>
@@ -21,7 +33,7 @@ export default function Notification() {
                     <div className="notificationImageContainer d-flex flex-column align-items-center justify-content-center text-light">
                       <IoMdNotifications className='icon'></IoMdNotifications>
                     </div>
-                    <div className="col ml-2 p-2">{notification.contenu}</div>
+                    <div className="col ml-2 p-2">{notification.notificationMessage}</div>
                     
                   </div>
                 ))}

@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const connectToDatabase = require("../../../database/databaseOperations");
-
+const {postNotification}=require("../../notifications/postService/postService")
 const postCandidature = async (projectId, internId) => {
     try {
         // Connect to the database
@@ -22,6 +22,7 @@ const postCandidature = async (projectId, internId) => {
                 return { status: "failed", message: "An error occurred while posting candidature", error: error };
             } else {
                 console.log('Candidature posted successfully');
+                postNotification({notificationMessage:"votre candidature a été crée avec success ",notificationDate:(new Date()).toString(),idRecipient :"intern "+internId })
                 return { status: "success", message: "Candidature posted successfully", candidatureId: results.insertId };
             }
             connection.end();

@@ -5,13 +5,13 @@ import { FaBell } from "react-icons/fa";
 import { CiUser } from "react-icons/ci";
 
 function Navbar() {
-  const [activeList, setActiveList] = useState([true, false, false, false, false, false, false,false]);
+  const [activeList, setActiveList] = useState([true, false, false, false, false, false, false,false,false]);
 
   const setActive = (id) => {
     const newActiveList = activeList.map((item, index) => index === id);
     setActiveList(newActiveList);
   };
-
+  const role=localStorage.getItem("role")
   return (
     <nav className="navbar navbar-expand-lg align-items-baseline p-2 m-0">
       <Link className="navbar-brand p-1" to="http://localhost:3000/#navbarBrand">
@@ -35,11 +35,12 @@ function Navbar() {
              Acceuil
             </Link>
           </li>
+          {role=='admin' && 
           <li className="nav-item mx-2" onClick={() => setActive(1)}>
             <Link className={"nav-link " + (activeList[1] ? "active" : "")} to="/dashboard">
               Statistiques
             </Link>
-          </li>
+          </li>}
           <li className="nav-item mx-2" onClick={() => setActive(2)}>
             <Link className={"nav-link " + (activeList[2] ? "active" : "")} to="/discover">
               Découvrir
@@ -65,9 +66,15 @@ function Navbar() {
               Candidatures
             </Link>
           </li>
+          {role!="admin" && 
           <li className="nav-item mx-2" onClick={() => setActive(7)}>
             <Link className={"nav-link " + (activeList[7] ? "active" : "")} to="/contact">
               Messagerie
+            </Link>
+          </li>}
+          <li className="nav-item mx-2" onClick={() => setActive(7)}>
+            <Link className={"nav-link " + (activeList[8] ? "active" : "")} to="/">
+              Se déconnecter 
             </Link>
           </li>
         </ul>

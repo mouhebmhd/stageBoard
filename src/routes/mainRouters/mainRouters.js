@@ -4,7 +4,7 @@ import CreateInternAccount from '../../views/createInternAccount.js';
 import MainPage from '../../views/mainPage.js';
 import Login from "../../views/login.js"
 import Discover from "../../views/discover.js"
-import Tours from "../../views/tours.js"
+import Offers from "../../views/offers.js"
 import Blog from "../../views/blog.js"
 import Languages from "../../views/languages.js"
 import ManageInterns from "../../views/manageInterns"
@@ -26,7 +26,7 @@ export default function mainRouters() {
     <Route path='/supervisor/createAccount/' element={<CreateInternAccount role="encadrant"/>}></Route>
     <Route path='/' element={<Login />}></Route>
     <Route path='/discover' element={<Discover />}></Route>
-    <Route path='/tours' element={<Tours />}></Route>
+    <Route path='/tours' element={<Offers />}></Route>
     <Route path='/blog' element={<Blog />}></Route>
     <Route path='/specialites' element={<Languages />}></Route>
     <Route path='/users/interns' element={<ManageInterns />}></Route>

@@ -1,5 +1,5 @@
 const connectToDatabase = require("../../../database/databaseOperations");
-
+const {postNotification}=require("../../notifications/postService/postService")
 const updateCandidatureById = async (candidatureId,updatedCandidature ) => {
   try {
         // Establish connection to the database
@@ -35,6 +35,7 @@ const updateCandidatureById = async (candidatureId,updatedCandidature ) => {
                         resolve({ status: "failed", message: 'Candidature not found' });
                     } else {
                         resolve({ status: "success", message: 'Candidature updated successfully' });
+
                     }
                 }
             });
