@@ -46,11 +46,12 @@ function Navbar() {
               Découvrir
             </Link>
           </li>
+          {role=="admin" && 
           <li className="nav-item mx-2" onClick={() => setActive(3)}>
             <Link className={"nav-link " + (activeList[3] ? "active" : "")} to="/tours">
               Offres
             </Link>
-          </li>
+          </li>}
           {role!="intern" && 
           <li className="nav-item mx-2" onClick={() => setActive(4)}>
             <Link className={"nav-link " + (activeList[4] ? "active" : "")} to="/users/interns">
