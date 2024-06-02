@@ -52,13 +52,13 @@ function Navbar() {
               Offres
             </Link>
           </li>}
-          {role!="intern" && 
+          {role=="admin" && 
           <li className="nav-item mx-2" onClick={() => setActive(4)}>
             <Link className={"nav-link " + (activeList[4] ? "active" : "")} to="/users/interns">
               Stagiaires
             </Link>
           </li>}
-          {role!="intern" && 
+          {role=="admin" && 
           <li className="nav-item mx-2" onClick={() => setActive(5)}>
             <Link className={"nav-link " + (activeList[5] ? "active" : "")} to="/users/supervisors">
               Encadrants
