@@ -47,7 +47,7 @@ export default function Messaging () {
         if (role == 'intern') {
           setMessages(
             response.data.messages.filter(message => {
-              return message.internId !=0
+              return message.internId ==userId
             })
           )
           setMessage(prevMessage => ({ ...prevMessage, internId: userId }))
@@ -66,7 +66,10 @@ export default function Messaging () {
         
         }
         if (role == 'supervisor') {
-          setMessages( response.data.messages)
+          setMessages(
+            response.data.messages.filter(message => {
+              return message.supervisorId ==userId
+            }));
           setMessage(prevMessage => ({
             ...prevMessage,
             supervisorId: userId,
