@@ -30,6 +30,7 @@ export default function AddOffer(props) {
         if(connectResult.data.status=="success")
           {
             navigate("/tours")
+            window.location.reload();
           }
       })
       .catch(error => {
