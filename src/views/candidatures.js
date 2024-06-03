@@ -106,7 +106,7 @@ const navigate=useNavigate()
                 }} >Accepter Encadrement</button>}
                 {role=='intern' && <button className='btn btn-primary' onClick={()=>{
                  //accepter candidature 
-                 modifierCandidature(candidature.id,{...candidature,"applicationStatus":"Demande acceptée"})}}>Annuler Candidature</button>}
+                 modifierCandidature(candidature.id,{...candidature,"applicationStatus":"Demande annulée"})}}>Annuler Candidature</button>}
                 {candidature.applicationStatus=='en attente' && role=='admin' && <button className='btn btn-danger' onClick={()=>{
                  //refuser candidature 
                  modifierCandidature(candidature.id,{...candidature,"applicationStatus":"refusée"})
