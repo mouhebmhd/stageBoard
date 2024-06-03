@@ -23,7 +23,7 @@ function Navbar() {
               return candidature.applicationStatus=="Demande acceptée" && candidature.internId==userId;
             }))
           }
-        console.log(whereIntern)
+        
     })
   },[role,userId])
   return (
