@@ -1,17 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './navbar.css';
 import { Link } from 'react-router-dom';
 import { FaBell } from "react-icons/fa";
 import { CiUser } from "react-icons/ci";
-
+import axios from 'axios';
 function Navbar() {
   const [activeList, setActiveList] = useState([true, false, false, false, false, false, false,false,false]);
-
   const setActive = (id) => {
     const newActiveList = activeList.map((item, index) => index === id);
     setActiveList(newActiveList);
   };
-  const role=localStorage.getItem("role")
+  const role=localStorage.getItem("role");
+  const userId=localStorage.getItem(role+"Id");
+  var [whereIntern,setWhereIntern]=useState([]);
+  useEffect(()=>{
+    axios.get("http://localhost:3030/candidature/getAllCandidatures/")
+    .then(response=>{
+  
+        if(role=="intern")
+          {
+            setWhereIntern(response.data.candidatures.filter(candidature=>{
+              return candidature.applicationStatus=="Demande acceptée" && candidature.internId==userId;
+            }))
+          }
+        console.log(whereIntern)
+    })
+  },[role,userId])
   return (
     <nav className="navbar navbar-expand-lg align-items-baseline p-2 m-0">
       <Link className="navbar-brand p-1" to="http://localhost:3000/#navbarBrand">
@@ -69,10 +83,16 @@ function Navbar() {
               Candidatures
             </Link>
           </li>
-          {role!="admin" && 
+          {role=="intern" && 
           <li className="nav-item mx-2" onClick={() => setActive(7)}>
             <Link className={"nav-link " + (activeList[7] ? "active" : "")} to="/contact">
-              Messagerie
+              Messagerie 
+            </Link>
+          </li>}
+          {role=="supervisor" && 
+          <li className="nav-item mx-2" onClick={() => setActive(7)}>
+            <Link className={"nav-link " + (activeList[7] ? "active" : "")} to="/contact">
+              Messagerie 
             </Link>
           </li>}
           <li className="nav-item mx-2" onClick={() => setActive(7)}>
@@ -81,10 +101,11 @@ function Navbar() {
             </Link>
           </li>
         </ul>
+        {role!="admin" && 
         <Link to={"/notification"}>
         <FaBell className='notificationIcon mx-1 '></FaBell>
         </Link>
-        
+        }
 
         <Link className={"nav-link "} to="/user/manageProfile">
         <CiUser className='profilIcon mx-1 '></CiUser>

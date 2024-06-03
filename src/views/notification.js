@@ -7,16 +7,20 @@ import axios from 'axios';
 export default function Notification() {
     const [notifications,setNotifications]=useState([]);
     const role=localStorage.getItem("role");
-    const userId=localStorage.getItem("userId");
+    const userId=localStorage.getItem(role+"Id");
     useEffect(()=>{
       axios.get("http://localhost:3030/notifications/getNotifications")
       .then((response)=>{
-        setNotifications(response.data.notifications)
+        console.log(userId)
+        const notificationsList=response.data.notifications.filter(element=>{
+          return element.idRecipient.indexOf(role)!=-1 && element.idRecipient.indexOf(userId)!=-1 
+        })
+        setNotifications(notificationsList)
       })
       .catch(error=>{
         console.log(error)
       })
-    })
+    },[role])
   return (
    <>
    <Navbar></Navbar>
