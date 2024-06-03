@@ -83,7 +83,7 @@ function Navbar() {
               Candidatures
             </Link>
           </li>
-          {role=="intern" && 
+          {role=="intern" && whereIntern.length!=0 && 
           <li className="nav-item mx-2" onClick={() => setActive(7)}>
             <Link className={"nav-link " + (activeList[7] ? "active" : "")} to="/contact">
               Messagerie 
