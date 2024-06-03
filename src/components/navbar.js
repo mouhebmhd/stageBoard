@@ -60,7 +60,7 @@ function Navbar() {
               Découvrir
             </Link>
           </li>
-          {role=="admin" && 
+          {role!="supervisor" && 
           <li className="nav-item mx-2" onClick={() => setActive(3)}>
             <Link className={"nav-link " + (activeList[3] ? "active" : "")} to="/tours">
               Offres
