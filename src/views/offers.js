@@ -21,8 +21,10 @@ const deleteProject=(projectId)=>{
 }
 const updateOffer=(offerId,field,value,offer)=>{
   axios.put("http://localhost:3030/offer/updateOffer/",{projectId:offerId,project:{...offer,[field]:value}})
+  
   .then(response=>{
     console.log(response)
+    window.location.reload();
     if(response.data.status=='success')
       {
         window.location.reload()
