@@ -79,6 +79,7 @@ export default function Tours() {
     axios.post("http://localhost:3030/candidature/addCandidature/",{internToken:currentUserToken,projectId})
     .then(response=>{
       console.log(response.data)
+      window.location.reload();
     })
   }
   return (

@@ -38,7 +38,7 @@ const navigate=useNavigate()
             {
               const userId=localStorage.getItem('internId')
               setCandidatures(response.data.candidatures.filter((element,index)=>{
-                return element.internId==userId && element.applicationStatus!="en attente";
+                return element.internId==userId 
               }))
   
             }
