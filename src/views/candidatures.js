@@ -36,10 +36,12 @@ const navigate=useNavigate()
           }
           if(role=='intern')
             {
-             /*  const userId=localStorage.getItem('internId')
-              setCandidatures(response.data.candidatures.filter((element,index)=>{
+               const userId=localStorage.getItem('internId')
+              const candidaturesList=(response.data.candidatures.filter((element,index)=>{
                 return element.internId==userId 
-              })) */
+              })) 
+              console.log(userId)
+              setCandidatures(candidaturesList)
   
             }
     })
