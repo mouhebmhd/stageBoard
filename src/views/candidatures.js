@@ -52,6 +52,7 @@ const navigate=useNavigate()
   const modifierCandidature=(candidatureId,newCandidature)=>{
     axios.put("http://localhost:3030/candidature/updateCandidature/",newCandidature)
     .then(response=>{
+      window.location.reload();
       if(response.data.status=="success")
         {
           window.location.reload();
